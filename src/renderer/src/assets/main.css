@@ -432,6 +432,66 @@ label[for] {
   border: 1px solid var(--surface-200);
 }
 
+/* Cart card selection feedback */
+.cart-card-active {
+  border: 2px solid var(--primary-color);
+  background: var(--primary-50, #e0f2f1);
+  border-radius: 12px;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.cart-card-inactive {
+  border: 2px solid transparent;
+  border-radius: 12px;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+/* Cart card quantity badge */
+.cart-card-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Cart summary bar */
+.cart-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  background: var(--surface-100);
+  border: 1px solid var(--surface-200);
+}
+
+.cart-summary-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  background: var(--primary-100, #b2dfdb);
+  color: var(--primary-800, #004d40);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
 /* Scrollbar hidden for kiosk */
 ::-webkit-scrollbar {
   display: none;
