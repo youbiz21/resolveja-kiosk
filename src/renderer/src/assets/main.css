@@ -590,6 +590,48 @@ label[for] {
   border-top: 1px solid var(--surface-200);
 }
 
+/* Cadastro section header with icon */
+.cadastro-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.25rem;
+}
+
+.cadastro-section-header i {
+  font-size: 1.1rem;
+}
+
+/* Subtle hint below section headers */
+.cadastro-section-hint {
+  font-size: 0.85rem;
+  color: var(--text-color-secondary);
+  margin-bottom: 0.75rem;
+}
+
+/* Small hint below individual fields */
+.cadastro-field-hint {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-color-secondary);
+  margin-top: 0.3rem;
+}
+
+/* Timeslot sub-label */
+.cadastro-timeslot-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-color-secondary);
+  margin: 1rem 0 0.75rem;
+}
+
 /* Timeslot options */
 .timeslot-options {
   display: flex;

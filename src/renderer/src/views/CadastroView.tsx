@@ -190,14 +190,19 @@ export default function CadastroView(): React.JSX.Element {
         </button>
       </div>
       <hr />
-      <div className="py-4 flex justify-content-center align-items-center">
-        <span className="text-xl font-bold">Preencha os seus dados</span>
-      </div>
+
       <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
+        {/* Dados Pessoais */}
+        <div className="cadastro-section-header mt-3">
+          <i className="pi pi-user"></i>
+          <span>Dados Pessoais</span>
+        </div>
+        <div className="cadastro-section-hint">Campos assinalados com * são obrigatórios</div>
+
         <div className="grid">
           <div className="col-12 md:col-6">
             <label className="block mb-1" htmlFor="primeiroNome">
-              Primeiro Nome *
+              Primeiro nome *
             </label>
             <Controller
               name="primeiroNome"
@@ -207,7 +212,7 @@ export default function CadastroView(): React.JSX.Element {
                 <InputText
                   id="primeiroNome"
                   className="w-full"
-                  placeholder="Introduza o primeiro nome"
+                  placeholder="Ex.: Maria"
                   {...field}
                   onFocus={() => handleInputFocus('primeiroNome')}
                 />
@@ -216,7 +221,7 @@ export default function CadastroView(): React.JSX.Element {
           </div>
           <div className="col-12 md:col-6">
             <label className="block mb-1" htmlFor="ultimoNome">
-              Último Nome *
+              Apelido *
             </label>
             <Controller
               name="ultimoNome"
@@ -226,15 +231,24 @@ export default function CadastroView(): React.JSX.Element {
                 <InputText
                   id="ultimoNome"
                   className="w-full"
-                  placeholder="Introduza o último nome"
+                  placeholder="Ex.: Silva"
                   {...field}
                   onFocus={() => handleInputFocus('ultimoNome')}
                 />
               )}
             />
           </div>
+        </div>
+
+        {/* Contacto */}
+        <div className="cadastro-section-header mt-3">
+          <i className="pi pi-phone"></i>
+          <span>Contacto</span>
+        </div>
+
+        <div className="grid">
           <div className="col-12 md:col-6">
-            <label className="block mb-1">Telefone *</label>
+            <label className="block mb-1">Telemóvel *</label>
             <Controller
               name="telefone"
               control={control}
@@ -253,14 +267,14 @@ export default function CadastroView(): React.JSX.Element {
                   inputClass="phone-input-field"
                   buttonClass="phone-input-button"
                   enableSearch
-                  searchPlaceholder="Procurar..."
+                  searchPlaceholder="Procurar país..."
                 />
               )}
             />
           </div>
           <div className="col-12 md:col-6">
             <label className="block mb-1" htmlFor="email">
-              E-mail *
+              Correio electrónico *
             </label>
             <Controller
               name="email"
@@ -270,13 +284,24 @@ export default function CadastroView(): React.JSX.Element {
                 <InputText
                   id="email"
                   className="w-full"
-                  placeholder="Introduza o e-mail"
+                  placeholder="Ex.: nome@exemplo.pt"
                   {...field}
                   onFocus={() => handleInputFocus('email')}
                 />
               )}
             />
+            <small className="cadastro-field-hint">Para envio da confirmação do agendamento</small>
           </div>
+        </div>
+
+        {/* Morada */}
+        <div className="cadastro-section-header mt-3">
+          <i className="pi pi-map-marker"></i>
+          <span>Morada do serviço</span>
+        </div>
+        <div className="cadastro-section-hint">Local onde será efectuado o serviço ou recolha</div>
+
+        <div className="grid">
           <div className="col-12">
             <label className="block mb-1" htmlFor="morada">
               Morada
@@ -288,7 +313,7 @@ export default function CadastroView(): React.JSX.Element {
                 <InputText
                   id="morada"
                   className="w-full"
-                  placeholder="Introduza a morada"
+                  placeholder="Ex.: Rua Augusta, 100, 2.º Esq."
                   {...field}
                   onFocus={() => handleInputFocus('morada')}
                 />
@@ -297,7 +322,7 @@ export default function CadastroView(): React.JSX.Element {
           </div>
           <div className="col-12 md:col-6">
             <label className="block mb-1" htmlFor="codigoPostal">
-              Código Postal
+              Código postal
             </label>
             <Controller
               name="codigoPostal"
@@ -326,7 +351,7 @@ export default function CadastroView(): React.JSX.Element {
                 <InputText
                   id="localidade"
                   className="w-full"
-                  placeholder="Introduza a localidade"
+                  placeholder="Ex.: Lisboa"
                   {...field}
                   onFocus={() => handleInputFocus('localidade')}
                 />
@@ -335,13 +360,14 @@ export default function CadastroView(): React.JSX.Element {
           </div>
         </div>
 
-        {/* Secção de Agendamento */}
+        {/* Agendamento */}
         <div className="cadastro-section">
-          <div className="text-center mb-3">
-            <span className="text-xl font-bold">Agendar Serviço</span>
-            <div className="mt-1" style={{ color: 'var(--text-color-secondary)' }}>
-              Selecione a data e horário pretendidos
-            </div>
+          <div className="cadastro-section-header">
+            <i className="pi pi-calendar"></i>
+            <span>Agendamento</span>
+          </div>
+          <div className="cadastro-section-hint mb-3">
+            Escolha a data e o horário que melhor lhe convierem
           </div>
 
           <div className="flex justify-content-center">
@@ -369,29 +395,40 @@ export default function CadastroView(): React.JSX.Element {
           </div>
 
           {dataAgendamento && (
-            <div className="timeslot-options mt-3">
-              {TIME_SLOTS.map((slot) => (
-                <button
-                  key={slot}
-                  type="button"
-                  className={`timeslot-option${horaAgendamento === slot ? ' active' : ''}`}
-                  onClick={() => setValue('horaAgendamento', slot)}
-                >
-                  {slot}
-                </button>
-              ))}
-            </div>
+            <>
+              <div className="cadastro-timeslot-label">
+                <i className="pi pi-clock"></i>
+                <span>Horário pretendido</span>
+              </div>
+              <div className="timeslot-options">
+                {TIME_SLOTS.map((slot) => (
+                  <button
+                    key={slot}
+                    type="button"
+                    className={`timeslot-option${horaAgendamento === slot ? ' active' : ''}`}
+                    onClick={() => setValue('horaAgendamento', slot)}
+                  >
+                    {slot}
+                  </button>
+                ))}
+              </div>
+            </>
           )}
         </div>
 
-        <div className="text-center mt-3" style={{ paddingBottom: activeInput ? '320px' : '0' }}>
+        <div className="text-center mt-4" style={{ paddingBottom: activeInput ? '320px' : '0' }}>
           <Button
             type="submit"
             className={`w-full sm:w-20rem${isFormIncomplete ? ' btn-disabled-look' : ''}`}
-            label="Enviar"
-            icon="pi pi-send"
+            label="Confirmar agendamento"
+            icon="pi pi-calendar-plus"
             iconPos="right"
           />
+          {isFormIncomplete && (
+            <div className="cadastro-field-hint mt-2">
+              Selecione uma data e um horário para continuar
+            </div>
+          )}
         </div>
       </form>
 
