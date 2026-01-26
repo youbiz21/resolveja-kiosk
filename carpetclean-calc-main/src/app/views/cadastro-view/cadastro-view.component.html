@@ -1,0 +1,88 @@
+@if(loading()){
+    <div class="text-center">
+        <p-progressSpinner class="p-4" styleClass="w-4rem h-4rem" strokeWidth="5" styleClass="text-primary"  animationDuration="1s"></p-progressSpinner>
+    </div>
+}@else {
+<div class="flex justify-content-between">
+    <i class="pi pi-arrow-left" (click)="voltar()"></i>
+    <div>
+        <span class="font-bold">Valor Total: {{ simulador.final().value| currency: 'EUR' }}</span>
+    </div>
+</div>
+<hr>
+<div class="py-5 flex justify-content-center align-items-center">
+    <span>Insira os seus dados</span>
+</div>
+<form [formGroup]="formCadastro">
+    <div class="grid">
+        <div class="col-12 md:col-6">
+            <label class="block mb-1" for="primeiroNome">Primeiro Nome *</label>
+            <input pInputText class="w-full" type="text" id="primeiroNome" placeholder="Escreva o primeiro Nome" [formControl]="formCadastro.controls.primeiroNome"/>
+        </div>
+        <div class="col-12 md:col-6">
+            <label class="block mb-1" for="ultimoNome">Último Nome *</label>
+            <input pInputText class="w-full" type="text" id="ultimoNome" placeholder="Escreva o último Nome" [formControl]="formCadastro.controls.ultimoNome" />
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="flex gap-2">
+                <div>
+                    <label class="block mb-1" for="pais">País *</label>
+                    <p-dropdown 
+                        name="pais"
+                        [options]="countries"
+                        styleClass="w-8rem"
+                        [formControl]="formCadastro.controls.pais"
+                        optionLabel="nome"
+                        optionValue="prefix"
+                        dataKey="codigo"
+                        placeholder=" ">
+                            <ng-template pTemplate="selectedItem" let-pais>
+                                @if(formCadastro.controls.pais.value) {
+                                    <div class="flex align-items-center gap-2">
+                                        <img
+                                        src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                                        [class]="'flag flag-' + pais.codigo.toLowerCase()"
+                                        style="width: 18px;height: 12px;" />
+                                        <span>{{pais.prefix}}</span>
+                                    </div>
+                                }
+                            </ng-template>
+                            <ng-template let-pais pTemplate="item">
+                                <div class="flex align-items-center gap-2">
+                                    <img 
+                                        src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                                        [class]="'flag flag-' + pais.codigo.toLowerCase()"
+                                        style="width: 18px;height: 12px;" />
+                                        <span>{{pais.prefix}}</span>
+                                </div>
+                            </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="flex-1">
+                    <label class="block mb-1" for="telefone">Telefone *</label>
+                    <p-inputMask styleClass="w-full" id="telefone" mask="999 999 999" [formControl]="formCadastro.controls.telefone" placeholder="Escreva o telefone"></p-inputMask>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <label class="block mb-1" for="email">Email *</label>
+            <input pInputText class="w-full" type="text" id="email" placeholder="Escreva o Email" [formControl]="formCadastro.controls.email" />
+        </div>
+        <div class="col-12">
+            <label class="block mb-1" for="morada">Morada</label>
+            <input pInputText class="w-full" type="text" id="morada" placeholder="Escreva a morada" [formControl]="formCadastro.controls.morada" />
+        </div>
+        <div class="col-12 md:col-6">
+            <label class="block mb-1" for="codigo-postal">Codigo Postal</label>
+            <p-inputMask styleClass="w-full" id="codigo-postal" mask="9999-999" [formControl]="formCadastro.controls.codigoPostal" placeholder="0000-000"></p-inputMask>
+        </div>
+        <div class="col-12 md:col-6">
+            <label class="block mb-1" for="localidade">Localidade</label>
+            <input pInputText class="w-full" type="text" id="localidade" placeholder="Escreva a localidade" [formControl]="formCadastro.controls.localidade" />
+        </div>
+    </div>
+    <div class="text-center">
+        <p-button styleClass="w-full sm:w-auto" label="Enviar" (onClick)="enviar()"></p-button>
+    </div>
+</form>
+}

@@ -1,0 +1,49 @@
+<form [formGroup]="form()">
+    <div class="label">1. Formato</div>
+    <div class="flex flex-column align-content-center justify-content-center flex-wrap gap-3 sm:flex-row">
+        <app-icon-card class="flex-initial border-round-lg surface-300 w-8rem" icon="colchao-casal">
+            <ng-template #label>
+                <div class="flex flex-column align-items-center">
+                    <span class="block">Casal</span>
+                    <span class="block"><small>140/160</small></span>
+                </div>
+            </ng-template>
+            <p-radioButton formControlName="formato" value="casal" />
+        </app-icon-card>
+        <app-icon-card class="flex-initial border-round-lg surface-300 w-8rem" icon="colchao-king-size">
+            <ng-template #label>
+                <div class="flex flex-column align-items-center">
+                    <span class="block">King Size</span>
+                    <span class="block"><small>180/200</small></span>
+                </div>
+            </ng-template>
+            <p-radioButton formControlName="formato" value="king" />
+        </app-icon-card>
+        <app-icon-card class="flex-initial border-round-lg surface-300 w-8rem" icon="colchao-individual">
+            <ng-template #label>
+                <div class="flex flex-column align-items-center">    
+                    <span class="block">Individual</span>
+                    <span class="block"><small>70/100</small></span>
+                </div>
+            </ng-template>
+            <p-radioButton formControlName="formato" value="individual" />
+        </app-icon-card>
+        <app-icon-card class="flex-initial border-round-lg surface-300 w-8rem" icon="berco">
+            <ng-template #label>
+                <div class="flex flex-column align-items-center">
+                    <span class="block">Berço</span>
+                </div>
+            </ng-template>
+            <p-radioButton formControlName="formato" value="berco" />
+        </app-icon-card>
+        
+    </div>
+    <div class="label">2.Serviço</div>
+    <div class="flex flex-wrap gap-3 justify-content-center">
+        <p-toggleButton class="w-full sm:w-12rem" styleClass="w-full sm:w-12rem" formControlName="limpeza" onLabel="Limpeza" offLabel="Limpeza"></p-toggleButton>
+    </div>
+    <div class="label">3. Tratamento</div>
+    <div class="flex flex-wrap gap-3 justify-content-center">
+        <p-toggleButton class="w-full sm:w-12rem" styleClass="w-full sm:w-12rem" formControlName="antiAcaro" onLabel="Anti-Ácaro" offLabel="Anti-Ácaro"></p-toggleButton>
+    </div>
+</form>

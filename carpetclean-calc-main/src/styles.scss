@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'primeflex/themes/primeone-light.css';
+@import 'primeflex/primeflex.scss';
+@import 'primeng/resources/themes/lara-light-teal/theme.css';
+@import 'primeng/resources/primeng.css';
+@import 'primeicons/primeicons.css';
+
+div.label {
+    @extend .my-2, .font-bold
+}
+
+
+.cm-label {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    color: gray;
+    font-size: 12px;
+    transform: translate(-50%, 0);
+}

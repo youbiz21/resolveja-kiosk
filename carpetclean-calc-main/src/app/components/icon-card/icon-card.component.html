@@ -1,0 +1,13 @@
+<div class="flex flex-column p-3 align-items-center h-full">
+    <app-icon [icon]="icon()" class="p-1"></app-icon>
+    @if(labelTemplate) {
+        <div class="py-1">
+            <ng-container [ngTemplateOutlet]="labelTemplate"></ng-container>
+        </div>
+    } @else {
+        <span>{{ label() }}</span>
+    }
+    <div class="mt-auto">
+        <ng-content></ng-content>
+    </div>
+</div>

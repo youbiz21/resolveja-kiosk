@@ -1,0 +1,7 @@
+@if(currentComponent(); as component) {
+  <ng-container style="max-width: 100vw;" *ngComponentOutlet="component; "/>
+} @else {
+  <div class="text-center p-4">
+    <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="5" styleClass="text-primary"  animationDuration="1s"></p-progressSpinner>
+  </div>
+}

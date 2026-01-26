@@ -1,0 +1,17 @@
+<span class="cursor-pointer" (click)="voltar()"><i class="pi pi-arrow-left"></i></span>
+<p-tabView [(activeIndex)]="tabIndex" [scrollable]="true"  styleClass="tabview-custom">
+    @for (f of form.form().controls; track $index;) {
+        @if (f.value.$type; as type) {
+            <p-tabPanel>
+                <ng-template pTemplate="header">
+                    <app-icon [icon]="FORMS[type].icone"></app-icon>
+                    <span class="ml-2">{{ FORMS[type].nome }}</span>
+                </ng-template>
+                <ng-container *ngComponentOutlet="FORMS[type].component; inputs: { form: f }"></ng-container>
+                <div class="text-center mt-4">
+                    <p-button [disabled]="f.invalid" label="Avançar" (onClick)="avancar(f)"></p-button>
+                </div>
+            </p-tabPanel>
+        }
+    }
+</p-tabView>

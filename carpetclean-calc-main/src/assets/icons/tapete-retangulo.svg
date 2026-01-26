@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 171.25 171.25">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-4 {
+        mix-blend-mode: multiply;
+      }
+
+      .cls-5 {
+        isolation: isolate;
+      }
+
+      .cls-3 {
+        stroke: #0d8491;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" x="39.28" y="56.08" width="94.44" height="59.85"/>
+    </clipPath>
+  </defs>
+  <g class="cls-5">
+    <g id="Camada_1" data-name="Camada 1">
+      <g class="cls-4">
+        <g class="cls-1">
+          <rect class="cls-3" x="45" y="65.08" width="81.44" height="45.84"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

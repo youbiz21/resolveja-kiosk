@@ -1,0 +1,15 @@
+<div>
+    <img [src]="src()" width="120" height="60">
+    <!-- <app-icon [icon]="icon()"></app-icon> -->
+    <div class="flex gap-2 align-items-center">
+        <span class="font-bold">{{ titulo() }}</span>
+        <i class="pi pi-chevron-right"></i>
+        <hr class="flex-1">
+    </div>
+    <small>
+        <span>{{ descricao() }}</span>
+    </small>
+    <div class="flex gap-3 justify-content-center py-4">
+        <ng-content></ng-content>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<form [formGroup]="form()">
+    <div class="label">1. Caracteristicas</div>
+    <div class="flex flex-column align-content-center justify-content-center flex-wrap gap-3 sm:flex-row">
+        <app-icon-card class="flex-initial border-round-lg surface-300 w-8rem" icon="cabeceira-da-cama">
+            <ng-template #label>
+                <span class="block">Cabeceira</span>
+            </ng-template>
+            <p-radioButton formControlName="caracteristica" value="cabeceira" />
+        </app-icon-card>
+        <app-icon-card class="flex-initial border-round-lg surface-300 w-8rem" icon="estrutura-da-cama">
+            <ng-template #label>
+                <span class="block text-center">Estrutura</span>
+            </ng-template>
+            <p-radioButton formControlName="caracteristica" value="estrutura" />
+        </app-icon-card>
+        <app-icon-card class="flex-initial border-round-lg surface-300 w-8rem" icon="cabeiceira-e-estrutura">
+            <ng-template #label>
+                <span class="block text-center">Estrutura e Cabeceira</span>
+            </ng-template>
+            <p-radioButton formControlName="caracteristica" value="ambos" />
+        </app-icon-card>        
+    </div>
+    <div class="label">2.Formato</div>
+    <div class="flex flex-wrap gap-3 justify-content-center">
+        <div class="p-2 text-center">
+            <label class="block" for="individual">Individual</label>
+            <p-radioButton formControlName="formato" inputId="individual"  value="individual" />
+        </div>
+        <div class="p-2 text-center">
+            <label class="block" for="casal">Casal</label>
+            <p-radioButton formControlName="formato" inputId="casal"  value="casal" />
+        </div>
+    </div>
+    <div class="label">3.Serviço</div>
+    <div class="flex flex-wrap gap-3 justify-content-center">
+        <p-toggleButton class="w-full sm:w-12rem" styleClass="w-full sm:w-12rem" formControlName="limpeza" onLabel="Limpeza" offLabel="Limpeza"></p-toggleButton>
+    </div>
+    <div class="label">4. Tratamento</div>
+    <div class="flex flex-wrap gap-3 justify-content-center">
+        <p-toggleButton class="w-full sm:w-12rem" styleClass="w-full sm:w-12rem" formControlName="impermeabilizacao" onLabel="Impermeabilização" offLabel="Impermeabilização"></p-toggleButton>
+    </div>
+</form>

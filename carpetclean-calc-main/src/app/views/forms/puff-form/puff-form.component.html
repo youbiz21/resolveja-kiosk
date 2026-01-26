@@ -1,0 +1,14 @@
+<form [formGroup]="form()">
+    <div class="label">1.Acabamento</div>
+    <div class="flex flex-wrap gap-3 justify-content-center">
+        <p-toggleButton class="w-full sm:w-12rem" styleClass="w-full sm:w-12rem" formControlName="acabamento" onLabel="Tecido" offLabel="Tecido"></p-toggleButton>
+    </div>
+    <div class="label">2.Serviço</div>
+    <div class="flex flex-wrap gap-3 justify-content-center">
+        <p-toggleButton class="w-full sm:w-12rem" styleClass="w-full sm:w-12rem" formControlName="limpeza" onLabel="Limpeza" offLabel="Limpeza"></p-toggleButton>
+    </div>
+    <div class="label">3. Tratamento</div>
+    <div class="flex flex-wrap gap-3 justify-content-center">
+        <p-toggleButton class="w-full sm:w-12rem" styleClass="w-full sm:w-12rem" formControlName="impermeabilizacao" onLabel="Impermeabilização" offLabel="Impermeabilização"></p-toggleButton>
+    </div>
+</form>

@@ -1,0 +1,42 @@
+<form [formGroup]="form()">
+    <div class="label">1. Formato</div>
+    <div class="flex flex-column align-content-center flex-wrap gap-3 justify-content-center sm:flex-row">
+        <app-icon-card class="flex-initial border-round-lg surface-300 w-8rem" icon="pousa-pes">
+            <ng-template #label>
+                <div class="flex flex-column align-items-center">
+                    <span class="block">Pequeno</span>
+                    <span class="block"><small>Até 40cm</small></span>
+                </div>
+            </ng-template>
+            <p-radioButton formControlName="tamanho" value="pequeno" />
+        </app-icon-card>
+        <app-icon-card class="flex-initial border-round-lg surface-300 w-8rem" icon="pousa-pes">
+            <ng-template #label>
+                <div class="flex flex-column align-items-center">
+                    <span class="block text-center">Médio</span>
+                    <span class="block"><small>De 41 cm</small></span>
+                    <span class="block"><small>até 60cm</small></span>
+                </div>
+            </ng-template>
+            <p-radioButton formControlName="tamanho" value="medio" />
+        </app-icon-card>
+        <app-icon-card class="flex-initial border-round-lg surface-300 w-8rem" icon="pousa-pes">
+            <ng-template #label>
+                <div class="flex flex-column align-items-center">
+                    <span class="block text-center">Grande</span>
+                    <span class="block"><small>Maior que</small></span>
+                    <span class="block"><small>60cm</small></span>
+                </div>
+                </ng-template>
+            <p-radioButton formControlName="tamanho" value="grande" />
+        </app-icon-card>        
+    </div>
+    <div class="label">2.Serviço</div>
+    <div class="flex flex-wrap gap-3 justify-content-center ">
+        <p-toggleButton class="w-full sm:w-12rem" styleClass="w-full sm:w-12rem" formControlName="limpeza" onLabel="Limpeza" offLabel="Limpeza"></p-toggleButton>
+    </div>
+    <div class="label">3. Tratamento</div>
+    <div class="flex flex-wrap gap-3 justify-content-center">
+        <p-toggleButton class="w-full sm:w-12rem" styleClass="w-full sm:w-12rem" formControlName="impermeabilizacao" onLabel="Impermeabilização" offLabel="Impermeabilização"></p-toggleButton>
+    </div>
+</form>
