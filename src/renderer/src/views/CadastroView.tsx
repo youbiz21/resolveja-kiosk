@@ -195,7 +195,12 @@ export default function CadastroView(): React.JSX.Element {
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
-                <InputText id="email" className="w-full" placeholder="Introduza o e-mail" {...field} />
+                <InputText
+                  id="email"
+                  className="w-full"
+                  placeholder="Introduza o e-mail"
+                  {...field}
+                />
               )}
             />
           </div>

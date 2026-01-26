@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { RadioButton } from 'primereact/radiobutton'
-import { ToggleButton } from 'primereact/togglebutton'
 import IconCard from '../../components/IconCard'
+import ServiceToggle from '../../components/ServiceToggle'
 import Icon from '../../components/Icon'
 import NumericKeypad from '../../components/NumericKeypad'
 import type { IAbstractFormValue, TapeteFormValue } from '../../types/models'
@@ -179,12 +179,11 @@ export default function TapeteForm({ values, onChange }: Props): React.JSX.Eleme
           name="limpeza"
           control={control}
           render={({ field }) => (
-            <ToggleButton
-              className="w-full sm:w-12rem"
+            <ServiceToggle
+              serviceKey="limpeza"
               checked={field.value}
-              onChange={(e) => field.onChange(e.value)}
-              onLabel="Limpeza"
-              offLabel="Limpeza"
+              onChange={(v) => field.onChange(v)}
+              className="w-full sm:w-12rem"
             />
           )}
         />

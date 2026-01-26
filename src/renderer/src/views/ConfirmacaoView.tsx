@@ -45,8 +45,8 @@ export default function ConfirmacaoView(): React.JSX.Element {
       </div>
       <div className="py-3 flex flex-column justify-content-center align-items-center">
         <div className="text-center w-20rem" style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
-          Iremos entrar em contacto nas próximas 24 horas úteis para agendar o dia e a hora.
-          Muito obrigado!
+          Iremos entrar em contacto nas próximas 24 horas úteis para agendar o dia e a hora. Muito
+          obrigado!
         </div>
         <div className="text-center mt-5">
           <Button
