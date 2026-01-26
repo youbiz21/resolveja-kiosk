@@ -46,7 +46,14 @@ export default function SofaForm({ values, onChange }: Props): React.JSX.Element
 
   return (
     <form>
-      <div className="label">1. Formato</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          1. Lugares do sofá
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Indique o número de lugares do seu sofá</small>
+        </span>
+      </div>
       <div className="flex justify-content-center">
         <div className="flex flex-column align-content-center flex-wrap shadow-3 w-12rem">
           <div className="flex flex-column p-3 align-items-center h-full">
@@ -67,7 +74,14 @@ export default function SofaForm({ values, onChange }: Props): React.JSX.Element
         </div>
       </div>
 
-      <div className="label">2. Acabamento</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          2. Tipo de acabamento
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Qual o material do seu sofá?</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="acabamento"
@@ -97,7 +111,14 @@ export default function SofaForm({ values, onChange }: Props): React.JSX.Element
         />
       </div>
 
-      <div className="label">3. Serviço</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          3. Serviço desejado
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Escolha o serviço que pretende para o seu sofá</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="limpeza"
@@ -114,14 +135,21 @@ export default function SofaForm({ values, onChange }: Props): React.JSX.Element
         />
       </div>
 
-      <div className="label">4. Tratamento</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          4. Tratamento adicional
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Pretende algum tratamento extra?</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="impermeabilizacao"
           control={control}
           render={({ field }) => (
             <ToggleButton
-              className="w-full sm:w-12rem"
+              className="w-full sm:w-auto"
               checked={field.value}
               onChange={(e) => field.onChange(e.value)}
               onLabel="Impermeabilização"

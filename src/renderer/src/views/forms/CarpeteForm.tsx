@@ -108,7 +108,14 @@ export default function CarpeteForm({ values, onChange }: Props): React.JSX.Elem
 
   return (
     <form>
-      <div className="label">1. Formato</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          1. Formato da carpete
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Selecione o formato da sua carpete</small>
+        </span>
+      </div>
       <div className="flex flex-column align-content-center justify-content-center flex-wrap gap-3 sm:flex-row">
         <Controller
           name="formato"
@@ -159,7 +166,14 @@ export default function CarpeteForm({ values, onChange }: Props): React.JSX.Elem
         />
       </div>
 
-      <div className="label">2. Serviço</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          2. Serviço desejado
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Escolha o serviço que pretende para a sua carpete</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="limpeza"
@@ -176,7 +190,14 @@ export default function CarpeteForm({ values, onChange }: Props): React.JSX.Elem
         />
       </div>
 
-      <div className="label">3. Medida</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          3. Medidas da carpete
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Indique as dimensões da sua carpete</small>
+        </span>
+      </div>
       <div className="flex flex-column justify-content-center flex-wrap gap-3 align-items-center">
         {formato === 'retangulo' && (
           <>

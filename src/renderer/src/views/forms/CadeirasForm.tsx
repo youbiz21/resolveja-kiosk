@@ -27,7 +27,14 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
 
   return (
     <form>
-      <div className="label">1. Formato</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          1. Área a limpar
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Selecione a área da cadeira que pretende limpar</small>
+        </span>
+      </div>
       <div className="flex flex-column align-content-center justify-content-center flex-wrap gap-3 sm:flex-row">
         <Controller
           name="areaALimpar"
@@ -78,7 +85,14 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
         />
       </div>
 
-      <div className="label">2. Material</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          2. Tipo de material
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Qual o material da sua cadeira?</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="caracteristica"
@@ -108,7 +122,14 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
         />
       </div>
 
-      <div className="label">3. Serviço</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          3. Serviço desejado
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Escolha o serviço que pretende para a sua cadeira</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="limpeza"
@@ -125,14 +146,21 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
         />
       </div>
 
-      <div className="label">4. Tratamento</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          4. Tratamento adicional
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Pretende algum tratamento extra?</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="impermeabilizacao"
           control={control}
           render={({ field }) => (
             <ToggleButton
-              className="w-full sm:w-12rem"
+              className="w-full sm:w-auto"
               checked={field.value}
               onChange={(e) => field.onChange(e.value)}
               onLabel="Impermeabilização"

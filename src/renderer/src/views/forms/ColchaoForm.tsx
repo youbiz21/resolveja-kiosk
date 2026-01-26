@@ -26,7 +26,14 @@ export default function ColchaoForm({ values, onChange }: Props): React.JSX.Elem
 
   return (
     <form>
-      <div className="label">1. Formato</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          1. Tamanho do colchão
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Selecione o tamanho do seu colchão</small>
+        </span>
+      </div>
       <div className="flex flex-column align-content-center justify-content-center flex-wrap gap-3 sm:flex-row">
         <Controller
           name="formato"
@@ -115,7 +122,14 @@ export default function ColchaoForm({ values, onChange }: Props): React.JSX.Elem
         />
       </div>
 
-      <div className="label">2. Serviço</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          2. Serviço desejado
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Escolha o serviço que pretende para o seu colchão</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="limpeza"
@@ -132,7 +146,14 @@ export default function ColchaoForm({ values, onChange }: Props): React.JSX.Elem
         />
       </div>
 
-      <div className="label">3. Tratamento</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          3. Tratamento adicional
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Pretende algum tratamento extra?</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="antiAcaro"

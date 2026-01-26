@@ -27,7 +27,14 @@ export default function EstruturaCabeceiraForm({ values, onChange }: Props): Rea
 
   return (
     <form>
-      <div className="label">1. Tipo</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          1. Tipo de peça
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Selecione o que pretende limpar</small>
+        </span>
+      </div>
       <div className="flex flex-column align-content-center justify-content-center flex-wrap gap-3 sm:flex-row">
         <Controller
           name="caracteristica"
@@ -78,7 +85,14 @@ export default function EstruturaCabeceiraForm({ values, onChange }: Props): Rea
         />
       </div>
 
-      <div className="label">2. Formato</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          2. Tamanho da cama
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Selecione o tamanho da sua cama</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="formato"
@@ -108,7 +122,14 @@ export default function EstruturaCabeceiraForm({ values, onChange }: Props): Rea
         />
       </div>
 
-      <div className="label">3. Serviço</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          3. Serviço desejado
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Escolha o serviço que pretende</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="limpeza"
@@ -125,14 +146,21 @@ export default function EstruturaCabeceiraForm({ values, onChange }: Props): Rea
         />
       </div>
 
-      <div className="label">4. Tratamento</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          4. Tratamento adicional
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Pretende algum tratamento extra?</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="impermeabilizacao"
           control={control}
           render={({ field }) => (
             <ToggleButton
-              className="w-full sm:w-12rem"
+              className="w-full sm:w-auto"
               checked={field.value}
               onChange={(e) => field.onChange(e.value)}
               onLabel="Impermeabilização"

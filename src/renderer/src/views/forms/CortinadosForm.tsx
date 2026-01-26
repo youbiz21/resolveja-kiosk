@@ -48,10 +48,10 @@ export default function CortinadosForm({ values, onChange }: Props): React.JSX.E
     <form>
       <div>
         <div className="label" style={{ marginBottom: 0 }}>
-          1. Formato
+          1. Largura do cortinado
         </div>
-        <span className="block mb-2">
-          <small>Selecione a largura do cortinado</small>
+        <span className="block mb-2 text-500">
+          <small>Selecione ou insira a largura do seu cortinado</small>
         </span>
       </div>
       <div className="flex flex-column flex-wrap gap-3 align-items-center">
@@ -91,7 +91,14 @@ export default function CortinadosForm({ values, onChange }: Props): React.JSX.E
         <span>{(formato || 0).toFixed(2)} m</span>
       </div>
 
-      <div className="label">2. Serviço</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          2. Serviço desejado
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Escolha o serviço que pretende para o seu cortinado</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="limpeza"
@@ -108,14 +115,21 @@ export default function CortinadosForm({ values, onChange }: Props): React.JSX.E
         />
       </div>
 
-      <div className="label">3. Tratamento</div>
+      <div>
+        <div className="label" style={{ marginBottom: 0 }}>
+          3. Tratamento adicional
+        </div>
+        <span className="block mb-2 text-500">
+          <small>Pretende algum tratamento extra?</small>
+        </span>
+      </div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="impermeabilizacao"
           control={control}
           render={({ field }) => (
             <ToggleButton
-              className="w-full sm:w-12rem"
+              className="w-full sm:w-auto"
               checked={field.value}
               onChange={(e) => field.onChange(e.value)}
               onLabel="Impermeabilização"
