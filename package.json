@@ -27,7 +27,9 @@
     "primeflex": "^4.0.0",
     "primeicons": "^7.0.0",
     "primereact": "^10.9.7",
-    "react-hook-form": "^7.71.1"
+    "react-hook-form": "^7.71.1",
+    "react-phone-input-2": "^2.15.1",
+    "react-simple-keyboard": "^3.8.141"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^3.0.0",

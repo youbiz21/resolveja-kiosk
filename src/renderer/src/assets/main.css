@@ -583,6 +583,200 @@ label[for] {
   background: var(--primary-100, #b2dfdb);
 }
 
+/* Cadastro section separator */
+.cadastro-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--surface-200);
+}
+
+/* Timeslot options */
+.timeslot-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.timeslot-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  background: var(--surface-100);
+  border: 2px solid transparent;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
+  min-width: 100px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.timeslot-option:active {
+  background: var(--surface-200);
+}
+
+.timeslot-option.active {
+  border-color: var(--primary-color);
+  background: var(--primary-50, #e8f5e9);
+}
+
+/* Touch-friendly inline calendar overrides */
+.p-calendar .p-datepicker {
+  font-size: 1.1rem;
+  padding: 0.75rem;
+}
+
+.p-datepicker td > span {
+  width: 52px;
+  height: 52px;
+  line-height: 52px;
+  border-radius: 10px;
+}
+
+.p-datepicker th > span {
+  width: 52px;
+  height: 52px;
+  line-height: 52px;
+}
+
+.p-datepicker td {
+  padding: 0.15rem;
+}
+
+.p-datepicker .p-highlight > span,
+.p-datepicker td > span.p-highlight {
+  font-weight: 700 !important;
+  font-size: 1.15rem;
+  color: #fff !important;
+  background: var(--primary-color) !important;
+  border: 3px solid var(--primary-800, #004d40) !important;
+}
+
+.p-datepicker .p-datepicker-today > span {
+  border: 2px solid var(--surface-400);
+  font-weight: 600 !important;
+}
+
+/* Phone Input overrides (react-phone-input-2) */
+.phone-input-container {
+  width: 100%;
+}
+
+.phone-input-container .phone-input-field {
+  width: 100% !important;
+  height: auto !important;
+  padding: 0.85rem 1rem 0.85rem 52px !important;
+  font-size: 1rem !important;
+  border: 1px solid var(--surface-300) !important;
+  border-radius: 6px !important;
+  background: var(--surface-0, #fff) !important;
+}
+
+.phone-input-container .phone-input-field:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 1px var(--primary-color) !important;
+}
+
+.phone-input-container .phone-input-button {
+  border: 1px solid var(--surface-300) !important;
+  border-right: none !important;
+  border-radius: 6px 0 0 6px !important;
+  background: var(--surface-100) !important;
+}
+
+.phone-input-container .phone-input-button:hover {
+  background: var(--surface-200) !important;
+}
+
+/* Virtual Keyboard */
+.virtual-keyboard-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: var(--surface-100, #f5f5f5);
+  border-top: 1px solid var(--surface-300);
+  padding: 0 0.5rem 1rem;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.virtual-keyboard-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0.35rem 0;
+}
+
+.virtual-keyboard-hide {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.virtual-keyboard-hide:active {
+  background: var(--surface-200);
+}
+
+.virtual-keyboard-hide i {
+  font-size: 0.85rem;
+}
+
+.virtual-keyboard-theme {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.virtual-keyboard-theme .hg-button {
+  min-height: 52px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  background: var(--surface-0, #fff);
+  border: 1px solid var(--surface-300);
+  color: var(--text-color);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.virtual-keyboard-theme .hg-button:active {
+  background: var(--surface-300);
+}
+
+.virtual-keyboard-theme .hg-button-space {
+  min-width: 40%;
+}
+
+.virtual-keyboard-theme .hg-button-enter {
+  background: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.virtual-keyboard-theme .hg-button-enter:active {
+  opacity: 0.85;
+}
+
+.virtual-keyboard-theme .hg-button-bksp {
+  max-width: 80px;
+}
+
+.keyboard-open {
+  padding-bottom: 300px;
+}
+
 /* Scrollbar hidden for kiosk */
 ::-webkit-scrollbar {
   display: none;

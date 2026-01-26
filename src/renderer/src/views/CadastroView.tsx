@@ -1,16 +1,13 @@
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { Button } from 'primereact/button'
 import { InputText } from 'primereact/inputtext'
 import { InputMask } from 'primereact/inputmask'
-import { Dropdown } from 'primereact/dropdown'
+import { Calendar } from 'primereact/calendar'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/high-res.css'
 import { useStepper } from '../contexts/StepperContext'
-
-type PaisType = {
-  nome: string
-  codigo: string
-  prefix: string
-}
+import VirtualKeyboard from '../components/VirtualKeyboard'
 
 type CadastroFormData = {
   primeiroNome: string
@@ -18,56 +15,161 @@ type CadastroFormData = {
   telefone: string
   email: string
   morada: string
-  pais: string
   codigoPostal: string
   localidade: string
+  dataAgendamento: Date | null
+  horaAgendamento: string
 }
 
-const countries: PaisType[] = [
-  { nome: 'Portugal', prefix: '+351', codigo: 'PT' },
-  { nome: 'Brasil', prefix: '+55', codigo: 'BR' },
-  { nome: 'França', prefix: '+33', codigo: 'FR' },
-  { nome: 'Itália', prefix: '+39', codigo: 'IT' },
-  { nome: 'Marrocos', prefix: '+212', codigo: 'MA' },
-  { nome: 'Alemanha', prefix: '+49', codigo: 'DE' },
-  { nome: 'Espanha', prefix: '+34', codigo: 'ES' },
-  { nome: 'Argélia', prefix: '+213', codigo: 'DZ' }
+const TIME_SLOTS = ['9:30', '11:00', '14:00', '17:00']
+
+const FIELD_ORDER = [
+  'primeiroNome',
+  'ultimoNome',
+  'telefone',
+  'email',
+  'morada',
+  'codigoPostal',
+  'localidade'
 ]
+
+const NUMERIC_FIELDS = new Set(['telefone', 'codigoPostal'])
+
+/** Simulates typing/backspace on a native input so React-based libs pick up the change */
+function simulateNativeInput(input: HTMLInputElement, newValue: string): void {
+  const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set
+  if (!setter) return
+  setter.call(input, newValue)
+  input.dispatchEvent(new Event('input', { bubbles: true }))
+}
+
+function getMinDate(): Date {
+  const date = new Date()
+  date.setDate(date.getDate() + 3)
+  const day = date.getDay()
+  if (day === 6) date.setDate(date.getDate() + 2) // Sábado → Segunda
+  if (day === 0) date.setDate(date.getDate() + 1) // Domingo → Segunda
+  return date
+}
 
 function getCadastroCache(): Partial<CadastroFormData> | null {
   const storageData = localStorage.getItem('_cadastro')
-  if (storageData) return JSON.parse(storageData)
+  if (storageData) {
+    const parsed = JSON.parse(storageData)
+    if (parsed.dataAgendamento) {
+      parsed.dataAgendamento = new Date(parsed.dataAgendamento)
+    }
+    return parsed
+  }
   return null
 }
 
 export default function CadastroView(): React.JSX.Element {
   const stepper = useStepper()
   const [loading, setLoading] = useState(false)
+  const [activeInput, setActiveInput] = useState<string | null>(null)
+  const formRef = useRef<HTMLFormElement>(null)
 
   const cached = getCadastroCache()
 
-  const { control, handleSubmit } = useForm<CadastroFormData>({
+  const { control, handleSubmit, watch, setValue, getValues } = useForm<CadastroFormData>({
     defaultValues: {
       primeiroNome: cached?.primeiroNome || '',
       ultimoNome: cached?.ultimoNome || '',
       telefone: cached?.telefone || '',
       email: cached?.email || '',
       morada: cached?.morada || '',
-      pais: cached?.pais || '+351',
       codigoPostal: cached?.codigoPostal || '',
-      localidade: cached?.localidade || ''
+      localidade: cached?.localidade || '',
+      dataAgendamento: cached?.dataAgendamento || null,
+      horaAgendamento: cached?.horaAgendamento || ''
     }
   })
 
+  const dataAgendamento = watch('dataAgendamento')
+  const horaAgendamento = watch('horaAgendamento')
+
   const onSubmit = (data: CadastroFormData): void => {
+    if (!data.dataAgendamento || !data.horaAgendamento) return
     localStorage.setItem('_cadastro', JSON.stringify(data))
     setLoading(true)
-    // Skip Bitrix24 submission - just advance to confirmation
     setTimeout(() => {
       setLoading(false)
       stepper.next()
     }, 300)
   }
+
+  const handleKeyboardChange = useCallback(
+    (value: string) => {
+      if (activeInput && !NUMERIC_FIELDS.has(activeInput)) {
+        setValue(activeInput as keyof CadastroFormData, value)
+      }
+    },
+    [activeInput, setValue]
+  )
+
+  const handleButtonPress = useCallback(
+    (button: string) => {
+      if (!activeInput || !NUMERIC_FIELDS.has(activeInput)) return
+
+      if (activeInput === 'telefone') {
+        const input = document.getElementById('telefone') as HTMLInputElement | null
+        if (!input) return
+        if (/^\d$/.test(button)) {
+          simulateNativeInput(input, input.value + button)
+        } else if (button === '{bksp}') {
+          // Remove the last actual digit, not trailing spaces/formatting
+          const val = input.value
+          let i = val.length - 1
+          while (i >= 0 && !/\d/.test(val[i])) i--
+          if (i >= 0) {
+            simulateNativeInput(input, val.slice(0, i) + val.slice(i + 1))
+          }
+        }
+      } else if (activeInput === 'codigoPostal') {
+        const current = getValues('codigoPostal') || ''
+        const digits = current.replace(/\D/g, '')
+        if (/^\d$/.test(button) && digits.length < 7) {
+          const newDigits = digits + button
+          setValue('codigoPostal', formatPostalCode(newDigits))
+        } else if (button === '{bksp}' && digits.length > 0) {
+          const newDigits = digits.slice(0, -1)
+          setValue('codigoPostal', formatPostalCode(newDigits))
+        }
+      }
+    },
+    [activeInput, getValues, setValue]
+  )
+
+  const handleKeyboardClose = useCallback(() => {
+    if (!activeInput) return
+    const idx = FIELD_ORDER.indexOf(activeInput)
+    if (idx >= 0 && idx < FIELD_ORDER.length - 1) {
+      const nextField = FIELD_ORDER[idx + 1]
+      setActiveInput(nextField)
+      const el = formRef.current?.querySelector<HTMLInputElement>(`#${nextField}`)
+      if (el) {
+        el.focus()
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+    } else {
+      setActiveInput(null)
+    }
+  }, [activeInput])
+
+  const handleKeyboardHide = useCallback(() => {
+    setActiveInput(null)
+  }, [])
+
+  const handleInputFocus = useCallback((fieldName: string) => {
+    setActiveInput(fieldName)
+    const el = document.getElementById(fieldName)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }, [])
+
+  const isNumericInput = activeInput ? NUMERIC_FIELDS.has(activeInput) : false
 
   if (loading) {
     return (
@@ -77,8 +179,10 @@ export default function CadastroView(): React.JSX.Element {
     )
   }
 
+  const isFormIncomplete = !dataAgendamento || !horaAgendamento
+
   return (
-    <div>
+    <div className={activeInput ? 'keyboard-open' : ''}>
       <div>
         <button type="button" className="btn-back" onClick={() => stepper.prev()}>
           <i className="pi pi-arrow-left"></i>
@@ -89,7 +193,7 @@ export default function CadastroView(): React.JSX.Element {
       <div className="py-4 flex justify-content-center align-items-center">
         <span className="text-xl font-bold">Preencha os seus dados</span>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
         <div className="grid">
           <div className="col-12 md:col-6">
             <label className="block mb-1" htmlFor="primeiroNome">
@@ -105,6 +209,7 @@ export default function CadastroView(): React.JSX.Element {
                   className="w-full"
                   placeholder="Introduza o primeiro nome"
                   {...field}
+                  onFocus={() => handleInputFocus('primeiroNome')}
                 />
               )}
             />
@@ -123,68 +228,35 @@ export default function CadastroView(): React.JSX.Element {
                   className="w-full"
                   placeholder="Introduza o último nome"
                   {...field}
+                  onFocus={() => handleInputFocus('ultimoNome')}
                 />
               )}
             />
           </div>
           <div className="col-12 md:col-6">
-            <div className="flex gap-2">
-              <div>
-                <label className="block mb-1" htmlFor="pais">
-                  País *
-                </label>
-                <Controller
-                  name="pais"
-                  control={control}
-                  render={({ field }) => (
-                    <Dropdown
-                      id="pais"
-                      options={countries}
-                      optionLabel="nome"
-                      optionValue="prefix"
-                      className="w-8rem"
-                      value={field.value}
-                      onChange={(e) => field.onChange(e.value)}
-                      placeholder=" "
-                      itemTemplate={(option) => (
-                        <div className="flex align-items-center gap-2">
-                          <span>{option.prefix}</span>
-                        </div>
-                      )}
-                      valueTemplate={(option) =>
-                        option ? (
-                          <div className="flex align-items-center gap-2">
-                            <span>{option.prefix}</span>
-                          </div>
-                        ) : (
-                          <span>&nbsp;</span>
-                        )
-                      }
-                    />
-                  )}
+            <label className="block mb-1">Telefone *</label>
+            <Controller
+              name="telefone"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <PhoneInput
+                  country="pt"
+                  preferredCountries={['pt', 'br', 'fr', 'it', 'ma', 'de', 'es', 'dz']}
+                  value={field.value}
+                  onChange={(value) => field.onChange(value)}
+                  inputProps={{
+                    id: 'telefone',
+                    onFocus: () => handleInputFocus('telefone')
+                  }}
+                  containerClass="phone-input-container"
+                  inputClass="phone-input-field"
+                  buttonClass="phone-input-button"
+                  enableSearch
+                  searchPlaceholder="Procurar..."
                 />
-              </div>
-              <div className="flex-1">
-                <label className="block mb-1" htmlFor="telefone">
-                  Telefone *
-                </label>
-                <Controller
-                  name="telefone"
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field }) => (
-                    <InputMask
-                      id="telefone"
-                      className="w-full"
-                      mask="999 999 999"
-                      placeholder="Introduza o telefone"
-                      value={field.value}
-                      onChange={(e) => field.onChange(e.value)}
-                    />
-                  )}
-                />
-              </div>
-            </div>
+              )}
+            />
           </div>
           <div className="col-12 md:col-6">
             <label className="block mb-1" htmlFor="email">
@@ -200,6 +272,7 @@ export default function CadastroView(): React.JSX.Element {
                   className="w-full"
                   placeholder="Introduza o e-mail"
                   {...field}
+                  onFocus={() => handleInputFocus('email')}
                 />
               )}
             />
@@ -217,6 +290,7 @@ export default function CadastroView(): React.JSX.Element {
                   className="w-full"
                   placeholder="Introduza a morada"
                   {...field}
+                  onFocus={() => handleInputFocus('morada')}
                 />
               )}
             />
@@ -236,6 +310,7 @@ export default function CadastroView(): React.JSX.Element {
                   placeholder="0000-000"
                   value={field.value}
                   onChange={(e) => field.onChange(e.value)}
+                  onFocus={() => handleInputFocus('codigoPostal')}
                 />
               )}
             />
@@ -253,21 +328,92 @@ export default function CadastroView(): React.JSX.Element {
                   className="w-full"
                   placeholder="Introduza a localidade"
                   {...field}
+                  onFocus={() => handleInputFocus('localidade')}
                 />
               )}
             />
           </div>
         </div>
-        <div className="text-center mt-3">
+
+        {/* Secção de Agendamento */}
+        <div className="cadastro-section">
+          <div className="text-center mb-3">
+            <span className="text-xl font-bold">Agendar Serviço</span>
+            <div className="mt-1" style={{ color: 'var(--text-color-secondary)' }}>
+              Selecione a data e horário pretendidos
+            </div>
+          </div>
+
+          <div className="flex justify-content-center">
+            <Controller
+              name="dataAgendamento"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <Calendar
+                  inline
+                  locale="pt"
+                  dateFormat="dd/mm/yy"
+                  minDate={getMinDate()}
+                  disabledDays={[0, 6]}
+                  showIcon={false}
+                  value={field.value}
+                  onChange={(e) => {
+                    field.onChange(e.value)
+                    setValue('horaAgendamento', '')
+                  }}
+                  onFocus={() => setActiveInput(null)}
+                />
+              )}
+            />
+          </div>
+
+          {dataAgendamento && (
+            <div className="timeslot-options mt-3">
+              {TIME_SLOTS.map((slot) => (
+                <button
+                  key={slot}
+                  type="button"
+                  className={`timeslot-option${horaAgendamento === slot ? ' active' : ''}`}
+                  onClick={() => setValue('horaAgendamento', slot)}
+                >
+                  {slot}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="text-center mt-3" style={{ paddingBottom: activeInput ? '320px' : '0' }}>
           <Button
             type="submit"
-            className="w-full sm:w-20rem"
+            className={`w-full sm:w-20rem${isFormIncomplete ? ' btn-disabled-look' : ''}`}
             label="Enviar"
             icon="pi pi-send"
             iconPos="right"
           />
         </div>
       </form>
+
+      <VirtualKeyboard
+        visible={!!activeInput}
+        onChange={handleKeyboardChange}
+        onButtonPress={handleButtonPress}
+        inputName={activeInput || undefined}
+        initialValue={
+          activeInput && !NUMERIC_FIELDS.has(activeInput)
+            ? String(getValues(activeInput as keyof CadastroFormData) || '')
+            : ''
+        }
+        numericMode={isNumericInput}
+        onClose={handleKeyboardClose}
+        onHide={handleKeyboardHide}
+      />
     </div>
   )
+}
+
+function formatPostalCode(digits: string): string {
+  if (digits.length <= 4) return digits
+  return digits.slice(0, 4) + '-' + digits.slice(4, 7)
 }
