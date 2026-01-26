@@ -7,6 +7,8 @@ type IconCardProps = {
   labelContent?: ReactNode
   children?: ReactNode
   className?: string
+  selected?: boolean
+  onClick?: () => void
 }
 
 export default function IconCard({
@@ -14,10 +16,19 @@ export default function IconCard({
   label,
   labelContent,
   children,
-  className = ''
+  className = '',
+  selected,
+  onClick
 }: IconCardProps): React.JSX.Element {
+  const selectable = selected !== undefined
+  const cardClass = selectable ? `icon-card-selectable ${selected ? 'selected' : ''}` : ''
+
   return (
-    <div className={className}>
+    <div
+      className={`${className} ${cardClass}`}
+      onClick={onClick}
+      style={onClick ? { cursor: 'pointer' } : undefined}
+    >
       <div className="flex flex-column p-3 align-items-center h-full">
         <Icon icon={icon} />
         {labelContent ? (

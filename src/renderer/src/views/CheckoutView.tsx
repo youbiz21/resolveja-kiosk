@@ -40,7 +40,10 @@ export default function CheckoutView(): React.JSX.Element {
   return (
     <div>
       <div>
-        <i className="pi pi-arrow-left cursor-pointer" onClick={() => stepper.prev()}></i>
+        <button type="button" className="btn-back" onClick={() => stepper.prev()}>
+          <i className="pi pi-arrow-left"></i>
+          <span>Voltar</span>
+        </button>
       </div>
       <hr />
       <div className="flex flex-column gap-2">
@@ -49,11 +52,19 @@ export default function CheckoutView(): React.JSX.Element {
             <div key={index}>
               <div className="flex justify-content-between mb-1">
                 <span>{item.descricao}</span>
-                <div>
-                  <span className="cursor-pointer" onClick={() => simulador.deleteItem(item)}>
-                    <i className="pi pi-trash mx-2 text-red-400"></i>
-                  </span>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => simulador.deleteItem(item)}
+                  style={{
+                    border: 'none',
+                    background: 'transparent',
+                    padding: '0.5rem',
+                    cursor: 'pointer',
+                    borderRadius: 8
+                  }}
+                >
+                  <i className="pi pi-trash text-red-400" style={{ fontSize: '1.2rem' }}></i>
+                </button>
               </div>
               <div className="text-sm ml-4 text-700 mb-2">
                 {item.resumo.detalhes.map((detalhe, di) => (
@@ -106,23 +117,29 @@ export default function CheckoutView(): React.JSX.Element {
                     98% dos nossos clientes compra o tratamento Anti-acaros, por apenas{' '}
                     <span>{formatCurrency(possuiOferta.valor)}</span>
                   </div>
-                  <div className="flex gap-2 mb-4 justify-content-center">
-                    <span>
-                      Sim, quero
+                  <div className="flex gap-3 mb-4 justify-content-center">
+                    <label
+                      className="flex align-items-center gap-2 cursor-pointer surface-100 border-round-lg px-4 py-3"
+                      style={{ minWidth: 160 }}
+                    >
                       <RadioButton
                         value={true}
                         onChange={() => setAdicionalSelected(true)}
                         checked={adicionalSelected === true}
                       />
-                    </span>
-                    <span>
-                      Nao, obrigado
+                      <span>Sim, quero</span>
+                    </label>
+                    <label
+                      className="flex align-items-center gap-2 cursor-pointer surface-100 border-round-lg px-4 py-3"
+                      style={{ minWidth: 160 }}
+                    >
                       <RadioButton
                         value={false}
                         onChange={() => setAdicionalSelected(false)}
                         checked={adicionalSelected === false}
                       />
-                    </span>
+                      <span>Nao, obrigado</span>
+                    </label>
                   </div>
                   <div className="mb-6 font-bold text-lg text-center">
                     Valor Total: {formatCurrency(simulador.finalTotal)}
@@ -135,18 +152,31 @@ export default function CheckoutView(): React.JSX.Element {
           )}
         </div>
 
-        <div className="flex justify-content-center gap-2">
+        <div className="flex justify-content-center gap-3">
           {simulador.items.length > 0 ? (
             <>
               <Button
                 label="Adicionar Servico"
+                icon="pi pi-plus"
                 severity="secondary"
+                className="w-full sm:w-auto"
                 onClick={() => stepper.to(0)}
               />
-              <Button label="Finalizar" onClick={() => stepper.next()} />
+              <Button
+                label="Finalizar"
+                icon="pi pi-check"
+                iconPos="right"
+                className="w-full sm:w-auto"
+                onClick={() => stepper.next()}
+              />
             </>
           ) : (
-            <Button label="Ir para Homepage" onClick={() => stepper.to(0)} />
+            <Button
+              label="Ir para Homepage"
+              icon="pi pi-home"
+              className="w-full sm:w-20rem"
+              onClick={() => stepper.to(0)}
+            />
           )}
         </div>
       </div>

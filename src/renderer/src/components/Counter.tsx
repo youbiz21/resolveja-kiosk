@@ -23,15 +23,47 @@ export default function Counter({
     onDecrement?.()
   }
 
+  const btnStyle: React.CSSProperties = {
+    width: 44,
+    height: 44,
+    borderRadius: '50%',
+    border: 'none',
+    fontSize: '1.4rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'background-color 0.15s'
+  }
+
   return (
-    <div className="flex align-items-center gap-2 border-round-md surface-300 py-1 px-2 my-1">
-      <span className="cursor-pointer" onClick={decrement}>
+    <div className="flex align-items-center gap-3 my-1">
+      <button
+        type="button"
+        onClick={decrement}
+        className="surface-300"
+        style={{
+          ...btnStyle,
+          opacity: value <= min ? 0.4 : 1
+        }}
+      >
         -
+      </button>
+      <span style={{ fontSize: '1.3rem', minWidth: 28, textAlign: 'center', fontWeight: 'bold' }}>
+        {value}
       </span>
-      <span>{value}</span>
-      <span className="cursor-pointer" onClick={increment}>
+      <button
+        type="button"
+        onClick={increment}
+        className="bg-primary text-white"
+        style={{
+          ...btnStyle,
+          opacity: value >= max ? 0.4 : 1
+        }}
+      >
         +
-      </span>
+      </button>
     </div>
   )
 }

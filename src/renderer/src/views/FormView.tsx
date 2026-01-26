@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { TabView, TabPanel } from 'primereact/tabview'
 import { Button } from 'primereact/button'
+import { Toast } from 'primereact/toast'
 import { useCart } from '../contexts/CartContext'
 import { useStepper } from '../contexts/StepperContext'
 import { Formularios } from '../constants/formularios'
@@ -49,10 +50,30 @@ function renderForm(
   }
 }
 
+function getValidationErrors(item: IAbstractFormValue): string[] {
+  const errors: string[] = []
+  const hasService = item.limpeza || item.impermeabilizacao || item.antiAcaro
+  if (!hasService) {
+    errors.push('Selecione pelo menos um servico (ex: Limpeza)')
+  }
+  if (item.$type === 'tapete' || item.$type === 'carpete') {
+    if ((item as TapeteFormValue | CarpeteFormValue).medida <= 0) {
+      errors.push('Selecione um tamanho ou insira as medidas')
+    }
+  }
+  if (item.$type === 'cortinados') {
+    if ((item as CortinadoFormValue).formato <= 0) {
+      errors.push('Selecione a largura do cortinado')
+    }
+  }
+  return errors
+}
+
 export default function FormView(): React.JSX.Element {
   const cart = useCart()
   const stepper = useStepper()
   const [tabIndex, setTabIndex] = useState(0)
+  const toast = useRef<Toast>(null)
 
   const isFormValid = (item: IAbstractFormValue): boolean => {
     const hasService = item.limpeza || item.impermeabilizacao || item.antiAcaro
@@ -71,7 +92,21 @@ export default function FormView(): React.JSX.Element {
 
   const avancar = (): void => {
     const currentItem = cart.items[tabIndex]
-    if (!isFormValid(currentItem)) return
+    if (!isFormValid(currentItem)) {
+      const errors = getValidationErrors(currentItem)
+      toast.current?.show({
+        severity: 'warn',
+        summary: 'Atenção',
+        detail: (
+          <ul style={{ margin: 0, paddingLeft: '1.2rem' }}>
+            {errors.map((msg, i) => (
+              <li key={i}>{msg}</li>
+            ))}
+          </ul>
+        )
+      })
+      return
+    }
 
     if (tabIndex === cart.items.length - 1) {
       stepper.next()
@@ -82,9 +117,11 @@ export default function FormView(): React.JSX.Element {
 
   return (
     <div>
-      <span className="cursor-pointer" onClick={() => stepper.prev()}>
+      <Toast ref={toast} position="top-right" life={5000} />
+      <button type="button" className="btn-back" onClick={() => stepper.prev()}>
         <i className="pi pi-arrow-left"></i>
-      </span>
+        <span>Voltar</span>
+      </button>
       <TabView
         activeIndex={tabIndex}
         onTabChange={(e) => setTabIndex(e.index)}
@@ -108,8 +145,10 @@ export default function FormView(): React.JSX.Element {
               <div className="text-center mt-4">
                 <Button
                   label="Avancar"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  className={`w-full sm:w-20rem${!isFormValid(cart.items[tabIndex]) ? ' btn-disabled-look' : ''}`}
                   onClick={avancar}
-                  disabled={!isFormValid(cart.items[tabIndex])}
                 />
               </div>
             </TabPanel>

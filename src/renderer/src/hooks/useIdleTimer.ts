@@ -10,7 +10,10 @@ const IDLE_EVENTS: (keyof DocumentEventMap)[] = [
 
 export function useIdleTimer(onIdle: () => void, timeoutMs: number): void {
   const onIdleRef = useRef(onIdle)
-  onIdleRef.current = onIdle
+
+  useEffect(() => {
+    onIdleRef.current = onIdle
+  }, [onIdle])
 
   useEffect(() => {
     let timer = setTimeout(() => onIdleRef.current(), timeoutMs)

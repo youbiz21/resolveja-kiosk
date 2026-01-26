@@ -38,6 +38,8 @@ export default function EstruturaCabeceiraForm({ values, onChange }: Props): Rea
                 className="flex-initial border-round-lg surface-300 w-8rem"
                 icon="cabeceira-da-cama"
                 labelContent={<span className="block">Cabeceira</span>}
+                selected={field.value === 'cabeceira'}
+                onClick={() => field.onChange('cabeceira')}
               >
                 <RadioButton
                   value="cabeceira"
@@ -49,6 +51,8 @@ export default function EstruturaCabeceiraForm({ values, onChange }: Props): Rea
                 className="flex-initial border-round-lg surface-300 w-8rem"
                 icon="estrutura-da-cama"
                 labelContent={<span className="block text-center">Estrutura</span>}
+                selected={field.value === 'estrutura'}
+                onClick={() => field.onChange('estrutura')}
               >
                 <RadioButton
                   value="estrutura"
@@ -60,6 +64,8 @@ export default function EstruturaCabeceiraForm({ values, onChange }: Props): Rea
                 className="flex-initial border-round-lg surface-300 w-8rem"
                 icon="cabeiceira-e-estrutura"
                 labelContent={<span className="block text-center">Estrutura e Cabeceira</span>}
+                selected={field.value === 'ambos'}
+                onClick={() => field.onChange('ambos')}
               >
                 <RadioButton
                   value="ambos"
@@ -79,28 +85,24 @@ export default function EstruturaCabeceiraForm({ values, onChange }: Props): Rea
           control={control}
           render={({ field }) => (
             <>
-              <div className="p-2 text-center">
-                <label className="block" htmlFor="ec-individual">
-                  Individual
-                </label>
+              <label className="radio-option" htmlFor="ec-individual">
+                <span>Individual</span>
                 <RadioButton
                   inputId="ec-individual"
                   value="individual"
                   onChange={(e) => field.onChange(e.value)}
                   checked={field.value === 'individual'}
                 />
-              </div>
-              <div className="p-2 text-center">
-                <label className="block" htmlFor="ec-casal">
-                  Casal
-                </label>
+              </label>
+              <label className="radio-option" htmlFor="ec-casal">
+                <span>Casal</span>
                 <RadioButton
                   inputId="ec-casal"
                   value="casal"
                   onChange={(e) => field.onChange(e.value)}
                   checked={field.value === 'casal'}
                 />
-              </div>
+              </label>
             </>
           )}
         />

@@ -48,8 +48,15 @@ export default function CartView(): React.JSX.Element {
         </div>
       </Section>
 
-      <div className="text-center">
-        <Button label="Avancar" onClick={next} />
+      <div className="text-center mt-4">
+        <Button
+          label="Avancar"
+          icon="pi pi-arrow-right"
+          iconPos="right"
+          className="w-full sm:w-20rem"
+          onClick={next}
+          disabled={cart.items.length === 0}
+        />
       </div>
     </div>
   )

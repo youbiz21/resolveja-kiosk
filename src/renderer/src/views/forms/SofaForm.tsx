@@ -74,28 +74,24 @@ export default function SofaForm({ values, onChange }: Props): React.JSX.Element
           control={control}
           render={({ field }) => (
             <>
-              <div className="w-4rem">
-                <label className="block" htmlFor="tecido">
-                  Tecido
-                </label>
+              <label className="radio-option" htmlFor="tecido">
+                <span>Tecido</span>
                 <RadioButton
                   inputId="tecido"
                   value="tecido"
                   onChange={(e) => field.onChange(e.value)}
                   checked={field.value === 'tecido'}
                 />
-              </div>
-              <div className="w-4rem">
-                <label className="block" htmlFor="pele">
-                  Pele
-                </label>
+              </label>
+              <label className="radio-option" htmlFor="pele">
+                <span>Pele</span>
                 <RadioButton
                   inputId="pele"
                   value="pele"
                   onChange={(e) => field.onChange(e.value)}
                   checked={field.value === 'pele'}
                 />
-              </div>
+              </label>
             </>
           )}
         />

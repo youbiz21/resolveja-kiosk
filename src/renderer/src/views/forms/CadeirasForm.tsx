@@ -38,6 +38,8 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
                 className="flex-initial border-round-lg surface-300 w-8rem"
                 icon="cadeira"
                 labelContent={<span className="block">Assento</span>}
+                selected={field.value === 'assento'}
+                onClick={() => field.onChange('assento')}
               >
                 <RadioButton
                   value="assento"
@@ -49,6 +51,8 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
                 className="flex-initial border-round-lg surface-300 w-8rem"
                 icon="cadeira"
                 labelContent={<span className="block text-center">Assento e Costas</span>}
+                selected={field.value === 'assentoCostas'}
+                onClick={() => field.onChange('assentoCostas')}
               >
                 <RadioButton
                   value="assentoCostas"
@@ -60,6 +64,8 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
                 className="flex-initial border-round-lg surface-300 w-8rem"
                 icon="cadeira"
                 labelContent={<span className="block text-center">Assento, Costas e Bracos</span>}
+                selected={field.value === 'assentoCostasBraco'}
+                onClick={() => field.onChange('assentoCostasBraco')}
               >
                 <RadioButton
                   value="assentoCostasBraco"
@@ -79,28 +85,24 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
           control={control}
           render={({ field }) => (
             <>
-              <div className="w-4rem">
-                <label className="block" htmlFor="cadeira-tecido">
-                  Tecido
-                </label>
+              <label className="radio-option" htmlFor="cadeira-tecido">
+                <span>Tecido</span>
                 <RadioButton
                   inputId="cadeira-tecido"
                   value="tecido"
                   onChange={(e) => field.onChange(e.value)}
                   checked={field.value === 'tecido'}
                 />
-              </div>
-              <div className="w-4rem">
-                <label className="block" htmlFor="cadeira-pele">
-                  Pele
-                </label>
+              </label>
+              <label className="radio-option" htmlFor="cadeira-pele">
+                <span>Pele</span>
                 <RadioButton
                   inputId="cadeira-pele"
                   value="pele"
                   onChange={(e) => field.onChange(e.value)}
                   checked={field.value === 'pele'}
                 />
-              </div>
+              </label>
             </>
           )}
         />

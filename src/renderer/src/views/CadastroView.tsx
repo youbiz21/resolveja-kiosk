@@ -79,12 +79,15 @@ export default function CadastroView(): React.JSX.Element {
 
   return (
     <div>
-      <div className="flex justify-content-between">
-        <i className="pi pi-arrow-left cursor-pointer" onClick={() => stepper.prev()}></i>
+      <div>
+        <button type="button" className="btn-back" onClick={() => stepper.prev()}>
+          <i className="pi pi-arrow-left"></i>
+          <span>Voltar</span>
+        </button>
       </div>
       <hr />
-      <div className="py-5 flex justify-content-center align-items-center">
-        <span>Insira os seus dados</span>
+      <div className="py-4 flex justify-content-center align-items-center">
+        <span className="text-xl font-bold">Insira os seus dados</span>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid">
@@ -250,8 +253,14 @@ export default function CadastroView(): React.JSX.Element {
             />
           </div>
         </div>
-        <div className="text-center">
-          <Button type="submit" className="w-full sm:w-auto" label="Enviar" />
+        <div className="text-center mt-3">
+          <Button
+            type="submit"
+            className="w-full sm:w-20rem"
+            label="Enviar"
+            icon="pi pi-send"
+            iconPos="right"
+          />
         </div>
       </form>
     </div>

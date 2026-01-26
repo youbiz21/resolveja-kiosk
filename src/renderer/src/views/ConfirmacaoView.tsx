@@ -25,13 +25,10 @@ export default function ConfirmacaoView(): React.JSX.Element {
 
   return (
     <div>
-      <div className="flex justify-content-between">
-        <i className="pi pi-arrow-left cursor-pointer" onClick={voltar}></i>
-      </div>
       <hr />
       <div className="py-5 flex justify-content-center flex-column align-items-center">
-        <i className="pi pi-thumbs-up block text-primary text-xl mb-3"></i>
-        <span className="block font-bold">PEDIDO CONFIRMADO E RECEBIDO</span>
+        <i className="pi pi-thumbs-up block text-primary mb-3" style={{ fontSize: '3rem' }}></i>
+        <span className="block font-bold text-xl">PEDIDO CONFIRMADO E RECEBIDO</span>
       </div>
       <div className="grid">
         <div className="col-9 pr-0">
@@ -47,12 +44,17 @@ export default function ConfirmacaoView(): React.JSX.Element {
         </div>
       </div>
       <div className="py-3 flex flex-column justify-content-center align-items-center">
-        <div className="text-center w-20rem">
+        <div className="text-center w-20rem" style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
           Iremos entrar em contato nas proximas 24 horas uteis para agendar dia e hora. Muito
           obrigado
         </div>
-        <div className="text-center w-20rem mt-4">
-          <Button label="Ir para a Homepage" onClick={voltar} />
+        <div className="text-center mt-5">
+          <Button
+            label="Ir para a Homepage"
+            icon="pi pi-home"
+            className="w-full sm:w-20rem"
+            onClick={voltar}
+          />
         </div>
       </div>
     </div>

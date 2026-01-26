@@ -1,9 +1,16 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { ToggleButton } from 'primereact/togglebutton'
-import { InputNumber } from 'primereact/inputnumber'
 import Icon from '../../components/Icon'
+import NumericKeypad from '../../components/NumericKeypad'
 import type { IAbstractFormValue, CortinadoFormValue } from '../../types/models'
+
+const PRESETS_LARGURA = [
+  { key: '1.4', label: '1.40 m', x: 1.4 },
+  { key: '2.0', label: '2.00 m', x: 2.0 },
+  { key: '2.6', label: '2.60 m', x: 2.6 },
+  { key: '3.0', label: '3.00 m', x: 3.0 }
+]
 
 type Props = {
   values: IAbstractFormValue
@@ -21,6 +28,9 @@ export default function CortinadosForm({ values, onChange }: Props): React.JSX.E
   const impermeabilizacao = watch('impermeabilizacao')
   const formato = watch('formato')
 
+  const [sizePreset, setSizePreset] = useState<string>('')
+  const [keypadOpen, setKeypadOpen] = useState(false)
+
   useEffect(() => {
     setValue('formato', x || 0)
   }, [x, setValue])
@@ -29,6 +39,11 @@ export default function CortinadosForm({ values, onChange }: Props): React.JSX.E
     onChange(getValues())
   }, [x, limpeza, impermeabilizacao, formato, onChange, getValues])
 
+  const selectPreset = (preset: (typeof PRESETS_LARGURA)[number]): void => {
+    setSizePreset(preset.key)
+    setValue('x', preset.x)
+  }
+
   return (
     <form>
       <div>
@@ -36,32 +51,43 @@ export default function CortinadosForm({ values, onChange }: Props): React.JSX.E
           1. Formato
         </div>
         <span className="block mb-2">
-          <small>Introduza as medidas em metros</small>
+          <small>Selecione a largura do cortinado</small>
         </span>
       </div>
       <div className="flex flex-column flex-wrap gap-3 align-items-center">
-        <span className="flex flex-wrap align-items-center gap-2">
-          <Icon icon="cortinado-medida" viewbox="" width={90} height={140} />
-          <label htmlFor="cortinado-x">X</label>
-          <span className="relative">
-            <Controller
-              name="x"
-              control={control}
-              render={({ field }) => (
-                <InputNumber
-                  inputId="cortinado-x"
-                  value={field.value}
-                  onValueChange={(e) => field.onChange(e.value || 0)}
-                  mode="decimal"
-                  minFractionDigits={2}
-                  min={0}
-                  inputClassName="w-6rem"
-                />
-              )}
-            />
-            <small className="cm-label">m</small>
-          </span>
-        </span>
+        <Icon icon="cortinado-medida" viewbox="" width={90} height={140} />
+        <div className="measure-options">
+          {PRESETS_LARGURA.map((p) => (
+            <div
+              key={p.key}
+              className={`measure-option${sizePreset === p.key ? ' active' : ''}`}
+              onClick={() => selectPreset(p)}
+            >
+              <span className="measure-option-label">{p.label}</span>
+            </div>
+          ))}
+          <div
+            className={`measure-option${sizePreset === 'custom' ? ' active' : ''}`}
+            onClick={() => {
+              setSizePreset('custom')
+              setValue('x', 0)
+            }}
+          >
+            <span className="measure-option-label">Personalizado</span>
+            <span className="measure-option-detail">Inserir medida</span>
+          </div>
+        </div>
+        {sizePreset === 'custom' && (
+          <div className="flex flex-wrap align-items-center gap-3 justify-content-center">
+            <span className="flex align-items-center gap-2">
+              <label>X</label>
+              <div className="measure-input" onClick={() => setKeypadOpen(true)}>
+                {(x || 0).toFixed(2)}
+                <span className="measure-input-unit">m</span>
+              </div>
+            </span>
+          </div>
+        )}
         <span>{(formato || 0).toFixed(2)} m</span>
       </div>
 
@@ -98,6 +124,18 @@ export default function CortinadosForm({ values, onChange }: Props): React.JSX.E
           )}
         />
       </div>
+
+      {keypadOpen && (
+        <NumericKeypad
+          value={x || 0}
+          label="Largura (metros)"
+          onConfirm={(v) => {
+            setValue('x', v)
+            setKeypadOpen(false)
+          }}
+          onCancel={() => setKeypadOpen(false)}
+        />
+      )}
     </form>
   )
 }
