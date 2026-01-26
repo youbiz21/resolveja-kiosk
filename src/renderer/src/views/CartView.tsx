@@ -1,0 +1,56 @@
+import { Button } from 'primereact/button'
+import Section from '../components/Section'
+import IconCard from '../components/IconCard'
+import Counter from '../components/Counter'
+import { useCart } from '../contexts/CartContext'
+import { useStepper } from '../contexts/StepperContext'
+import { Icones } from '../constants/formularios'
+import type { SimuladorFormKeys } from '../types/models'
+
+export default function CartView(): React.JSX.Element {
+  const cart = useCart()
+  const stepper = useStepper()
+
+  const next = (): void => {
+    if (cart.items.length > 0) stepper.next()
+  }
+
+  const renderCard = (key: SimuladorFormKeys, label: string, icon?: string): React.JSX.Element => (
+    <IconCard className="shadow-3 w-12rem" label={label} icon={icon || Icones[key]}>
+      <Counter
+        value={cart.countByType(key)}
+        onIncrement={() => cart.addItem(key)}
+        onDecrement={() => cart.removeItem(key)}
+      />
+    </IconCard>
+  )
+
+  return (
+    <div>
+      <Section titulo="Lavandaria" descricao="Recolha e entrega ao domicilio" icon="lavandaria">
+        {renderCard('tapete', 'Tapete / Carpete')}
+      </Section>
+
+      <Section
+        titulo="Servico ao Domicilio"
+        descricao="Deslocacao Gratuita"
+        icon="servico-ao-domicilio"
+      >
+        <div className="flex flex-wrap gap-2 justify-content-around">
+          {renderCard('sofa', 'Sofa')}
+          {renderCard('colchao', 'Colchao')}
+          {renderCard('estruturaCabeceira', 'Estrutura/Cabeceira')}
+          {renderCard('cortinados', 'Cortinados')}
+          {renderCard('cadeiras', 'Cadeiras')}
+          {renderCard('pousaPes', 'Pousa-pes')}
+          {renderCard('puff', 'Puff')}
+          {renderCard('carpete', 'Tapete / Carpete')}
+        </div>
+      </Section>
+
+      <div className="text-center">
+        <Button label="Avancar" onClick={next} />
+      </div>
+    </div>
+  )
+}

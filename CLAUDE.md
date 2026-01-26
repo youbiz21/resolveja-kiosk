@@ -42,6 +42,7 @@ Renderer calls main process via `window.electron.ipcRenderer`. Custom APIs shoul
 ### TypeScript Configuration
 
 Two separate tsconfig targets:
+
 - `tsconfig.node.json` — main + preload (Node/Electron APIs)
 - `tsconfig.web.json` — renderer (DOM/React, JSX: react-jsx)
 - Root `tsconfig.json` is a composite reference to both

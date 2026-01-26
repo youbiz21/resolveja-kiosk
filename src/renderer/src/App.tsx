@@ -1,34 +1,37 @@
-import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
+import { StepperProvider, useStepper } from './contexts/StepperContext'
+import { CartProvider } from './contexts/CartContext'
+import CartView from './views/CartView'
+import FormView from './views/FormView'
+import CheckoutView from './views/CheckoutView'
+import CadastroView from './views/CadastroView'
+import ConfirmacaoView from './views/ConfirmacaoView'
+
+function AppContent(): React.JSX.Element {
+  const stepper = useStepper()
+
+  switch (stepper.index) {
+    case 0:
+      return <CartView />
+    case 1:
+      return <FormView />
+    case 2:
+      return <CheckoutView />
+    case 3:
+      return <CadastroView />
+    case 4:
+      return <ConfirmacaoView />
+    default:
+      return <CartView />
+  }
+}
 
 function App(): React.JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
-
   return (
-    <>
-      <img alt="logo" className="logo" src={electronLogo} />
-      <div className="creator">Powered by electron-vite</div>
-      <div className="text">
-        Build an Electron app with <span className="react">React</span>
-        &nbsp;and <span className="ts">TypeScript</span>
-      </div>
-      <p className="tip">
-        Please try pressing <code>F12</code> to open the devTool
-      </p>
-      <div className="actions">
-        <div className="action">
-          <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">
-            Documentation
-          </a>
-        </div>
-        <div className="action">
-          <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
-            Send IPC
-          </a>
-        </div>
-      </div>
-      <Versions></Versions>
-    </>
+    <StepperProvider>
+      <CartProvider>
+        <AppContent />
+      </CartProvider>
+    </StepperProvider>
   )
 }
 
