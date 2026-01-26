@@ -5,7 +5,13 @@ import { useCart } from '../contexts/CartContext'
 import { useStepper } from '../contexts/StepperContext'
 import { Formularios } from '../constants/formularios'
 import Icon from '../components/Icon'
-import type { IAbstractFormValue, SimuladorFormKeys } from '../types/models'
+import type {
+  IAbstractFormValue,
+  SimuladorFormKeys,
+  TapeteFormValue,
+  CarpeteFormValue,
+  CortinadoFormValue
+} from '../types/models'
 import TapeteForm from './forms/TapeteForm'
 import SofaForm from './forms/SofaForm'
 import ColchaoForm from './forms/ColchaoForm'
@@ -49,7 +55,18 @@ export default function FormView(): React.JSX.Element {
   const [tabIndex, setTabIndex] = useState(0)
 
   const isFormValid = (item: IAbstractFormValue): boolean => {
-    return item.limpeza || item.impermeabilizacao || item.antiAcaro
+    const hasService = item.limpeza || item.impermeabilizacao || item.antiAcaro
+    if (!hasService) return false
+
+    if (item.$type === 'tapete' || item.$type === 'carpete') {
+      return (item as TapeteFormValue | CarpeteFormValue).medida > 0
+    }
+
+    if (item.$type === 'cortinados') {
+      return (item as CortinadoFormValue).formato > 0
+    }
+
+    return true
   }
 
   const avancar = (): void => {

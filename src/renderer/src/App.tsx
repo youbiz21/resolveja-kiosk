@@ -1,28 +1,60 @@
+import { useState, useCallback } from 'react'
 import { StepperProvider, useStepper } from './contexts/StepperContext'
-import { CartProvider } from './contexts/CartContext'
+import { CartProvider, useCart } from './contexts/CartContext'
+import { useIdleTimer } from './hooks/useIdleTimer'
+import ScreenSaver from './components/ScreenSaver'
 import CartView from './views/CartView'
 import FormView from './views/FormView'
 import CheckoutView from './views/CheckoutView'
 import CadastroView from './views/CadastroView'
 import ConfirmacaoView from './views/ConfirmacaoView'
 
+const IDLE_TIMEOUT_MS = 60 * 1000
+
 function AppContent(): React.JSX.Element {
   const stepper = useStepper()
+  const cart = useCart()
+  const [showScreenSaver, setShowScreenSaver] = useState(false)
 
+  const onIdle = useCallback(() => {
+    cart.clear()
+    stepper.to(0)
+    setShowScreenSaver(true)
+  }, [cart, stepper])
+
+  const onDismiss = useCallback(() => {
+    setShowScreenSaver(false)
+  }, [])
+
+  useIdleTimer(onIdle, IDLE_TIMEOUT_MS)
+
+  let content: React.JSX.Element
   switch (stepper.index) {
     case 0:
-      return <CartView />
+      content = <CartView />
+      break
     case 1:
-      return <FormView />
+      content = <FormView />
+      break
     case 2:
-      return <CheckoutView />
+      content = <CheckoutView />
+      break
     case 3:
-      return <CadastroView />
+      content = <CadastroView />
+      break
     case 4:
-      return <ConfirmacaoView />
+      content = <ConfirmacaoView />
+      break
     default:
-      return <CartView />
+      content = <CartView />
   }
+
+  return (
+    <>
+      {content}
+      {showScreenSaver && <ScreenSaver onDismiss={onDismiss} />}
+    </>
+  )
 }
 
 function App(): React.JSX.Element {
