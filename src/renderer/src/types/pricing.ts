@@ -30,6 +30,7 @@ export type ResumoServico = {
 
 export type ResultadoItem = {
   descricao: string
+  icone: string
   resumo: ResumoServico
   tipo: 'domicilio' | 'lavanderia'
 }

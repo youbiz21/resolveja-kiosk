@@ -4,6 +4,7 @@ import type { ResultadoItem } from '../types/pricing'
 import { CalculadorDeServico } from '../services/CalculadorDeServico'
 import { GeradorDeNomeProduto } from '../services/GeradorDeNomeProduto'
 import { TabelaDePrecos } from '../constants/precos'
+import { Formularios } from '../constants/formularios'
 
 type SimuladorReturn = {
   items: ResultadoItem[]
@@ -34,6 +35,7 @@ export function useSimulador(): SimuladorReturn {
       const resumo = servico.calcularItem(v)
       return {
         descricao: gerador.gerarNome(v) || '',
+        icone: Formularios[v.$type].icone,
         resumo,
         tipo: v.$service
       } as ResultadoItem
@@ -43,13 +45,14 @@ export function useSimulador(): SimuladorReturn {
     if (total < 70) {
       const quota = 70 - total
       resultados.push({
-        descricao: 'Quota minima',
+        descricao: 'Quota mínima',
+        icone: '',
         resumo: {
           antiAcaro: false,
           antiFogo: false,
           antiOdor: false,
           descontoLimpeza: 0,
-          detalhes: [{ detalhe: 'Valor minimo', valor: quota }],
+          detalhes: [{ detalhe: 'Valor mínimo', valor: quota }],
           impermeabilizacao: false,
           valorLimpeza: 0,
           valorImpermeabilizacao: 0,
