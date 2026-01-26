@@ -86,16 +86,17 @@ export default function CheckoutView(): React.JSX.Element {
           {simulador.items.length > 0 ? (
             <>
               <div className="mb-4 mt-2 text-center">
-                Valor Total (Servicos a Domicilio): {formatCurrency(simulador.totalDomicilio)}
+                Valor Total (Serviços ao Domicílio): {formatCurrency(simulador.totalDomicilio)}
                 <br />
                 {simulador.descontosDomicilio > 0 && (
                   <>
-                    Descontos (Servico a Domicilio): {formatCurrency(simulador.descontosDomicilio)}
+                    Descontos (Serviço ao Domicílio):{' '}
+                    {formatCurrency(simulador.descontosDomicilio)}
                     <br />
                   </>
                 )}
                 <br />
-                Valor Total (Servicos Lavanderia): {formatCurrency(simulador.totalLavanderia)}
+                Valor Total (Serviços de Lavandaria): {formatCurrency(simulador.totalLavanderia)}
                 <br />
                 {simulador.descontosLavanderia > 0 && (
                   <>
@@ -107,14 +108,14 @@ export default function CheckoutView(): React.JSX.Element {
                 Valor final c/ IVA: {formatCurrency(simulador.totalComDesconto)}
                 <br />
                 <br />
-                *Valores c/ IVA incluso
+                *Valores com IVA incluído
                 <br />
               </div>
 
               {possuiOferta && (
                 <div>
                   <div className="text-center w-20rem mb-4">
-                    98% dos nossos clientes compra o tratamento Anti-acaros, por apenas{' '}
+                    98% dos nossos clientes escolhe o tratamento Anti-ácaros por apenas{' '}
                     <span>{formatCurrency(possuiOferta.valor)}</span>
                   </div>
                   <div className="flex gap-3 mb-4 justify-content-center">
@@ -138,7 +139,7 @@ export default function CheckoutView(): React.JSX.Element {
                         onChange={() => setAdicionalSelected(false)}
                         checked={adicionalSelected === false}
                       />
-                      <span>Nao, obrigado</span>
+                      <span>Não, obrigado</span>
                     </label>
                   </div>
                   <div className="mb-6 font-bold text-lg text-center">
@@ -148,7 +149,7 @@ export default function CheckoutView(): React.JSX.Element {
               )}
             </>
           ) : (
-            <div>Carrinho Vazio.</div>
+            <div>O seu carrinho está vazio.</div>
           )}
         </div>
 
@@ -156,7 +157,7 @@ export default function CheckoutView(): React.JSX.Element {
           {simulador.items.length > 0 ? (
             <>
               <Button
-                label="Adicionar Servico"
+                label="Adicionar Serviço"
                 icon="pi pi-plus"
                 severity="secondary"
                 className="w-full sm:w-auto"
@@ -172,7 +173,7 @@ export default function CheckoutView(): React.JSX.Element {
             </>
           ) : (
             <Button
-              label="Ir para Homepage"
+              label="Voltar ao Início"
               icon="pi pi-home"
               className="w-full sm:w-20rem"
               onClick={() => stepper.to(0)}

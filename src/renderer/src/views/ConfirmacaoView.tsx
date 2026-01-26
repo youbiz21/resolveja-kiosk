@@ -28,7 +28,7 @@ export default function ConfirmacaoView(): React.JSX.Element {
       <hr />
       <div className="py-5 flex justify-content-center flex-column align-items-center">
         <i className="pi pi-thumbs-up block text-primary mb-3" style={{ fontSize: '3rem' }}></i>
-        <span className="block font-bold text-xl">PEDIDO CONFIRMADO E RECEBIDO</span>
+        <span className="block font-bold text-xl">PEDIDO CONFIRMADO</span>
       </div>
       <div className="grid">
         <div className="col-9 pr-0">
@@ -45,12 +45,12 @@ export default function ConfirmacaoView(): React.JSX.Element {
       </div>
       <div className="py-3 flex flex-column justify-content-center align-items-center">
         <div className="text-center w-20rem" style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
-          Iremos entrar em contato nas proximas 24 horas uteis para agendar dia e hora. Muito
-          obrigado
+          Iremos entrar em contacto nas próximas 24 horas úteis para agendar o dia e a hora.
+          Muito obrigado!
         </div>
         <div className="text-center mt-5">
           <Button
-            label="Ir para a Homepage"
+            label="Voltar ao Início"
             icon="pi pi-home"
             className="w-full sm:w-20rem"
             onClick={voltar}

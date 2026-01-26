@@ -100,7 +100,7 @@ export default function ColchaoForm({ values, onChange }: Props): React.JSX.Elem
                 onClick={() => field.onChange('berco')}
                 labelContent={
                   <div className="flex flex-column align-items-center">
-                    <span className="block">Berco</span>
+                    <span className="block">Berço</span>
                   </div>
                 }
               >
@@ -115,7 +115,7 @@ export default function ColchaoForm({ values, onChange }: Props): React.JSX.Elem
         />
       </div>
 
-      <div className="label">2. Servico</div>
+      <div className="label">2. Serviço</div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="limpeza"
@@ -142,8 +142,8 @@ export default function ColchaoForm({ values, onChange }: Props): React.JSX.Elem
               className="w-full sm:w-12rem"
               checked={field.value}
               onChange={(e) => field.onChange(e.value)}
-              onLabel="Anti-Acaro"
-              offLabel="Anti-Acaro"
+              onLabel="Anti-Ácaro"
+              offLabel="Anti-Ácaro"
             />
           )}
         />

@@ -57,7 +57,7 @@ export class CalculadorDeServico {
     }
     if (form.antiAcaro) {
       total += categoriaPreco.antiAcaro
-      detalhes.push({ detalhe: 'Anti Acaro', valor: categoriaPreco.antiAcaro })
+      detalhes.push({ detalhe: 'Anti-Ácaro', valor: categoriaPreco.antiAcaro })
     }
     if (form.antiOdor) {
       total += categoriaPreco.antiOdor
@@ -65,7 +65,7 @@ export class CalculadorDeServico {
     }
     if (form.impermeabilizacao) {
       total += valorImpermeabilizacao
-      detalhes.push({ detalhe: 'Impermeabilizacao', valor: categoriaPreco.impermeabilizacao })
+      detalhes.push({ detalhe: 'Impermeabilização', valor: categoriaPreco.impermeabilizacao })
     }
     if (form.antiFogo) {
       total += categoriaPreco.antiFogo
@@ -107,7 +107,7 @@ export class CalculadorDeServico {
     }
     if (form.antiAcaro) {
       total += categoriaPreco.antiAcaro
-      detalhes.push({ detalhe: 'Anti Acaro', valor: categoriaPreco.antiAcaro })
+      detalhes.push({ detalhe: 'Anti-Ácaro', valor: categoriaPreco.antiAcaro })
     }
     if (form.antiOdor) {
       total += categoriaPreco.antiOdor
@@ -115,7 +115,7 @@ export class CalculadorDeServico {
     }
     if (form.impermeabilizacao) {
       total += valorImpermeabilizacao
-      detalhes.push({ detalhe: 'Impermeabilizacao', valor: categoriaPreco.impermeabilizacao })
+      detalhes.push({ detalhe: 'Impermeabilização', valor: categoriaPreco.impermeabilizacao })
     }
     if (form.antiFogo) {
       total += categoriaPreco.antiFogo
@@ -173,7 +173,7 @@ export class CalculadorDeServico {
     }
     if (form.antiAcaro) {
       total += categoriaPreco.antiAcaro
-      detalhes.push({ detalhe: 'Anti Acaro', valor: categoriaPreco.antiAcaro })
+      detalhes.push({ detalhe: 'Anti-Ácaro', valor: categoriaPreco.antiAcaro })
     }
     if (form.antiOdor) {
       total += categoriaPreco.antiOdor
@@ -181,7 +181,7 @@ export class CalculadorDeServico {
     }
     if (form.impermeabilizacao) {
       total += valorImpermeabilizacao
-      detalhes.push({ detalhe: 'Impermeabilizacao', valor: categoriaPreco.impermeabilizacao })
+      detalhes.push({ detalhe: 'Impermeabilização', valor: categoriaPreco.impermeabilizacao })
     }
     if (form.antiFogo) {
       total += categoriaPreco.antiFogo
@@ -230,7 +230,7 @@ export class CalculadorDeServico {
     }
     if (form.antiAcaro) {
       total += categoriaPreco.antiAcaro
-      detalhes.push({ detalhe: 'Anti Acaro', valor: categoriaPreco.antiAcaro })
+      detalhes.push({ detalhe: 'Anti-Ácaro', valor: categoriaPreco.antiAcaro })
     }
     if (form.antiOdor) {
       total += categoriaPreco.antiOdor
@@ -238,7 +238,7 @@ export class CalculadorDeServico {
     }
     if (form.impermeabilizacao) {
       total += valorImpermeabilizacao
-      detalhes.push({ detalhe: 'Impermeabilizacao', valor: categoriaPreco.impermeabilizacao })
+      detalhes.push({ detalhe: 'Impermeabilização', valor: categoriaPreco.impermeabilizacao })
     }
     if (form.antiFogo) {
       total += categoriaPreco.antiFogo
@@ -280,7 +280,7 @@ export class CalculadorDeServico {
     }
     if (form.antiAcaro) {
       total += categoriaPreco.antiAcaro
-      detalhes.push({ detalhe: 'Anti Acaro', valor: categoriaPreco.antiAcaro })
+      detalhes.push({ detalhe: 'Anti-Ácaro', valor: categoriaPreco.antiAcaro })
     }
     if (form.antiOdor) {
       total += categoriaPreco.antiOdor
@@ -288,7 +288,7 @@ export class CalculadorDeServico {
     }
     if (form.impermeabilizacao) {
       total += valorImpermeabilizacao
-      detalhes.push({ detalhe: 'Impermeabilizacao', valor: categoriaPreco.impermeabilizacao })
+      detalhes.push({ detalhe: 'Impermeabilização', valor: categoriaPreco.impermeabilizacao })
     }
     if (form.antiFogo) {
       total += categoriaPreco.antiFogo
@@ -330,7 +330,7 @@ export class CalculadorDeServico {
     }
     if (form.antiAcaro) {
       total += categoriaPreco.antiAcaro
-      detalhes.push({ detalhe: 'Anti Acaro', valor: categoriaPreco.antiAcaro })
+      detalhes.push({ detalhe: 'Anti-Ácaro', valor: categoriaPreco.antiAcaro })
     }
     if (form.antiOdor) {
       total += categoriaPreco.antiOdor
@@ -338,7 +338,7 @@ export class CalculadorDeServico {
     }
     if (form.impermeabilizacao) {
       total += valorImpermeabilizacao
-      detalhes.push({ detalhe: 'Impermeabilizacao', valor: categoriaPreco.impermeabilizacao })
+      detalhes.push({ detalhe: 'Impermeabilização', valor: categoriaPreco.impermeabilizacao })
     }
     if (form.antiFogo) {
       total += categoriaPreco.antiFogo
@@ -383,7 +383,7 @@ export class CalculadorDeServico {
     }
     if (form.antiAcaro) {
       total += categoriaPreco.antiAcaro
-      detalhes.push({ detalhe: 'Anti Acaro', valor: categoriaPreco.antiAcaro })
+      detalhes.push({ detalhe: 'Anti-Ácaro', valor: categoriaPreco.antiAcaro })
     }
     if (form.antiOdor) {
       total += categoriaPreco.antiOdor
@@ -391,7 +391,7 @@ export class CalculadorDeServico {
     }
     if (form.impermeabilizacao) {
       total += valorImpermeabilizacao
-      detalhes.push({ detalhe: 'Impermeabilizacao', valor: categoriaPreco.impermeabilizacao })
+      detalhes.push({ detalhe: 'Impermeabilização', valor: categoriaPreco.impermeabilizacao })
     }
     if (form.antiFogo) {
       total += categoriaPreco.antiFogo
@@ -433,7 +433,7 @@ export class CalculadorDeServico {
     }
     if (form.antiAcaro) {
       total += categoriaPreco.antiAcaro
-      detalhes.push({ detalhe: 'Anti Acaro', valor: categoriaPreco.antiAcaro })
+      detalhes.push({ detalhe: 'Anti-Ácaro', valor: categoriaPreco.antiAcaro })
     }
     if (form.antiOdor) {
       total += categoriaPreco.antiOdor
@@ -441,7 +441,7 @@ export class CalculadorDeServico {
     }
     if (form.impermeabilizacao) {
       total += valorImpermeabilizacao
-      detalhes.push({ detalhe: 'Impermeabilizacao', valor: categoriaPreco.impermeabilizacao })
+      detalhes.push({ detalhe: 'Impermeabilização', valor: categoriaPreco.impermeabilizacao })
     }
     if (form.antiFogo) {
       total += categoriaPreco.antiFogo
@@ -483,7 +483,7 @@ export class CalculadorDeServico {
     }
     if (form.antiAcaro) {
       total += categoriaPreco.antiAcaro
-      detalhes.push({ detalhe: 'Anti Acaro', valor: categoriaPreco.antiAcaro })
+      detalhes.push({ detalhe: 'Anti-Ácaro', valor: categoriaPreco.antiAcaro })
     }
     if (form.antiOdor) {
       total += categoriaPreco.antiOdor
@@ -491,7 +491,7 @@ export class CalculadorDeServico {
     }
     if (form.impermeabilizacao) {
       total += valorImpermeabilizacao
-      detalhes.push({ detalhe: 'Impermeabilizacao', valor: categoriaPreco.impermeabilizacao })
+      detalhes.push({ detalhe: 'Impermeabilização', valor: categoriaPreco.impermeabilizacao })
     }
     if (form.antiFogo) {
       total += categoriaPreco.antiFogo

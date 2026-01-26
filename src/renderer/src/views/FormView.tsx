@@ -54,11 +54,11 @@ function getValidationErrors(item: IAbstractFormValue): string[] {
   const errors: string[] = []
   const hasService = item.limpeza || item.impermeabilizacao || item.antiAcaro
   if (!hasService) {
-    errors.push('Selecione pelo menos um servico (ex: Limpeza)')
+    errors.push('Selecione pelo menos um serviço (ex.: Limpeza)')
   }
   if (item.$type === 'tapete' || item.$type === 'carpete') {
     if ((item as TapeteFormValue | CarpeteFormValue).medida <= 0) {
-      errors.push('Selecione um tamanho ou insira as medidas')
+      errors.push('Selecione um tamanho ou introduza as medidas')
     }
   }
   if (item.$type === 'cortinados') {
@@ -97,6 +97,7 @@ export default function FormView(): React.JSX.Element {
       toast.current?.show({
         severity: 'warn',
         summary: 'Atenção',
+        life: 5000,
         detail: (
           <ul style={{ margin: 0, paddingLeft: '1.2rem' }}>
             {errors.map((msg, i) => (
@@ -117,7 +118,7 @@ export default function FormView(): React.JSX.Element {
 
   return (
     <div>
-      <Toast ref={toast} position="top-right" life={5000} />
+      <Toast ref={toast} position="top-right" />
       <button type="button" className="btn-back" onClick={() => stepper.prev()}>
         <i className="pi pi-arrow-left"></i>
         <span>Voltar</span>
@@ -144,7 +145,7 @@ export default function FormView(): React.JSX.Element {
               {renderForm(type, item, (updated) => cart.updateItem(index, updated))}
               <div className="text-center mt-4">
                 <Button
-                  label="Avancar"
+                  label="Avançar"
                   icon="pi pi-arrow-right"
                   iconPos="right"
                   className={`w-full sm:w-20rem${!isFormValid(cart.items[tabIndex]) ? ' btn-disabled-look' : ''}`}

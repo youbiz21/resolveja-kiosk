@@ -63,7 +63,7 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
               <IconCard
                 className="flex-initial border-round-lg surface-300 w-8rem"
                 icon="cadeira"
-                labelContent={<span className="block text-center">Assento, Costas e Bracos</span>}
+                labelContent={<span className="block text-center">Assento, Costas e Braços</span>}
                 selected={field.value === 'assentoCostasBraco'}
                 onClick={() => field.onChange('assentoCostasBraco')}
               >
@@ -78,7 +78,7 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
         />
       </div>
 
-      <div className="label">2. Caracteristicas</div>
+      <div className="label">2. Material</div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="caracteristica"
@@ -108,7 +108,7 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
         />
       </div>
 
-      <div className="label">3. Servico</div>
+      <div className="label">3. Serviço</div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="limpeza"
@@ -135,8 +135,8 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
               className="w-full sm:w-12rem"
               checked={field.value}
               onChange={(e) => field.onChange(e.value)}
-              onLabel="Impermeabilizacao"
-              offLabel="Impermeabilizacao"
+              onLabel="Impermeabilização"
+              offLabel="Impermeabilização"
             />
           )}
         />

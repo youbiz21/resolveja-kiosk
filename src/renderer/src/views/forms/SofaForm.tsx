@@ -97,7 +97,7 @@ export default function SofaForm({ values, onChange }: Props): React.JSX.Element
         />
       </div>
 
-      <div className="label">3. Servico</div>
+      <div className="label">3. Serviço</div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="limpeza"
@@ -124,8 +124,8 @@ export default function SofaForm({ values, onChange }: Props): React.JSX.Element
               className="w-full sm:w-12rem"
               checked={field.value}
               onChange={(e) => field.onChange(e.value)}
-              onLabel="Impermeabilizacao"
-              offLabel="Impermeabilizacao"
+              onLabel="Impermeabilização"
+              offLabel="Impermeabilização"
             />
           )}
         />

@@ -26,12 +26,12 @@ type CadastroFormData = {
 const countries: PaisType[] = [
   { nome: 'Portugal', prefix: '+351', codigo: 'PT' },
   { nome: 'Brasil', prefix: '+55', codigo: 'BR' },
-  { nome: 'Franca', prefix: '+33', codigo: 'FR' },
-  { nome: 'Italia', prefix: '+39', codigo: 'IT' },
+  { nome: 'França', prefix: '+33', codigo: 'FR' },
+  { nome: 'Itália', prefix: '+39', codigo: 'IT' },
   { nome: 'Marrocos', prefix: '+212', codigo: 'MA' },
   { nome: 'Alemanha', prefix: '+49', codigo: 'DE' },
   { nome: 'Espanha', prefix: '+34', codigo: 'ES' },
-  { nome: 'Argelia', prefix: '+213', codigo: 'DZ' }
+  { nome: 'Argélia', prefix: '+213', codigo: 'DZ' }
 ]
 
 function getCadastroCache(): Partial<CadastroFormData> | null {
@@ -87,7 +87,7 @@ export default function CadastroView(): React.JSX.Element {
       </div>
       <hr />
       <div className="py-4 flex justify-content-center align-items-center">
-        <span className="text-xl font-bold">Insira os seus dados</span>
+        <span className="text-xl font-bold">Preencha os seus dados</span>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid">
@@ -103,7 +103,7 @@ export default function CadastroView(): React.JSX.Element {
                 <InputText
                   id="primeiroNome"
                   className="w-full"
-                  placeholder="Escreva o primeiro Nome"
+                  placeholder="Introduza o primeiro nome"
                   {...field}
                 />
               )}
@@ -111,7 +111,7 @@ export default function CadastroView(): React.JSX.Element {
           </div>
           <div className="col-12 md:col-6">
             <label className="block mb-1" htmlFor="ultimoNome">
-              Ultimo Nome *
+              Último Nome *
             </label>
             <Controller
               name="ultimoNome"
@@ -121,7 +121,7 @@ export default function CadastroView(): React.JSX.Element {
                 <InputText
                   id="ultimoNome"
                   className="w-full"
-                  placeholder="Escreva o ultimo Nome"
+                  placeholder="Introduza o último nome"
                   {...field}
                 />
               )}
@@ -131,7 +131,7 @@ export default function CadastroView(): React.JSX.Element {
             <div className="flex gap-2">
               <div>
                 <label className="block mb-1" htmlFor="pais">
-                  Pais *
+                  País *
                 </label>
                 <Controller
                   name="pais"
@@ -177,7 +177,7 @@ export default function CadastroView(): React.JSX.Element {
                       id="telefone"
                       className="w-full"
                       mask="999 999 999"
-                      placeholder="Escreva o telefone"
+                      placeholder="Introduza o telefone"
                       value={field.value}
                       onChange={(e) => field.onChange(e.value)}
                     />
@@ -188,14 +188,14 @@ export default function CadastroView(): React.JSX.Element {
           </div>
           <div className="col-12 md:col-6">
             <label className="block mb-1" htmlFor="email">
-              Email *
+              E-mail *
             </label>
             <Controller
               name="email"
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
-                <InputText id="email" className="w-full" placeholder="Escreva o Email" {...field} />
+                <InputText id="email" className="w-full" placeholder="Introduza o e-mail" {...field} />
               )}
             />
           </div>
@@ -210,7 +210,7 @@ export default function CadastroView(): React.JSX.Element {
                 <InputText
                   id="morada"
                   className="w-full"
-                  placeholder="Escreva a morada"
+                  placeholder="Introduza a morada"
                   {...field}
                 />
               )}
@@ -218,7 +218,7 @@ export default function CadastroView(): React.JSX.Element {
           </div>
           <div className="col-12 md:col-6">
             <label className="block mb-1" htmlFor="codigoPostal">
-              Codigo Postal
+              Código Postal
             </label>
             <Controller
               name="codigoPostal"
@@ -246,7 +246,7 @@ export default function CadastroView(): React.JSX.Element {
                 <InputText
                   id="localidade"
                   className="w-full"
-                  placeholder="Escreva a localidade"
+                  placeholder="Introduza a localidade"
                   {...field}
                 />
               )}

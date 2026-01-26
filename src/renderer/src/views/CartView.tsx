@@ -27,22 +27,22 @@ export default function CartView(): React.JSX.Element {
 
   return (
     <div>
-      <Section titulo="Lavandaria" descricao="Recolha e entrega ao domicilio" icon="lavandaria">
+      <Section titulo="Lavandaria" descricao="Recolha e entrega ao domicílio" icon="lavandaria">
         {renderCard('tapete', 'Tapete / Carpete')}
       </Section>
 
       <Section
-        titulo="Servico ao Domicilio"
-        descricao="Deslocacao Gratuita"
+        titulo="Serviço ao Domicílio"
+        descricao="Deslocação gratuita"
         icon="servico-ao-domicilio"
       >
         <div className="flex flex-wrap gap-2 justify-content-around">
-          {renderCard('sofa', 'Sofa')}
-          {renderCard('colchao', 'Colchao')}
+          {renderCard('sofa', 'Sofá')}
+          {renderCard('colchao', 'Colchão')}
           {renderCard('estruturaCabeceira', 'Estrutura/Cabeceira')}
           {renderCard('cortinados', 'Cortinados')}
           {renderCard('cadeiras', 'Cadeiras')}
-          {renderCard('pousaPes', 'Pousa-pes')}
+          {renderCard('pousaPes', 'Pousa-pés')}
           {renderCard('puff', 'Puff')}
           {renderCard('carpete', 'Tapete / Carpete')}
         </div>
@@ -50,7 +50,7 @@ export default function CartView(): React.JSX.Element {
 
       <div className="text-center mt-4">
         <Button
-          label="Avancar"
+          label="Avançar"
           icon="pi pi-arrow-right"
           iconPos="right"
           className="w-full sm:w-20rem"

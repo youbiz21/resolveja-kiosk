@@ -26,7 +26,7 @@ export default function PousaPesForm({ values, onChange }: Props): React.JSX.Ele
 
   return (
     <form>
-      <div className="label">1. Formato</div>
+      <div className="label">1. Tamanho</div>
       <div className="flex flex-column align-content-center flex-wrap gap-3 justify-content-center sm:flex-row">
         <Controller
           name="tamanho"
@@ -42,7 +42,7 @@ export default function PousaPesForm({ values, onChange }: Props): React.JSX.Ele
                   <div className="flex flex-column align-items-center">
                     <span className="block">Pequeno</span>
                     <span className="block">
-                      <small>Ate 40cm</small>
+                      <small>Até 40 cm</small>
                     </span>
                   </div>
                 }
@@ -60,12 +60,12 @@ export default function PousaPesForm({ values, onChange }: Props): React.JSX.Ele
                 onClick={() => field.onChange('medio')}
                 labelContent={
                   <div className="flex flex-column align-items-center">
-                    <span className="block text-center">Medio</span>
+                    <span className="block text-center">Médio</span>
                     <span className="block">
                       <small>De 41 cm</small>
                     </span>
                     <span className="block">
-                      <small>ate 60cm</small>
+                      <small>até 60 cm</small>
                     </span>
                   </div>
                 }
@@ -88,7 +88,7 @@ export default function PousaPesForm({ values, onChange }: Props): React.JSX.Ele
                       <small>Maior que</small>
                     </span>
                     <span className="block">
-                      <small>60cm</small>
+                      <small>60 cm</small>
                     </span>
                   </div>
                 }
@@ -104,7 +104,7 @@ export default function PousaPesForm({ values, onChange }: Props): React.JSX.Ele
         />
       </div>
 
-      <div className="label">2. Servico</div>
+      <div className="label">2. Serviço</div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="limpeza"
@@ -131,8 +131,8 @@ export default function PousaPesForm({ values, onChange }: Props): React.JSX.Ele
               className="w-full sm:w-12rem"
               checked={field.value}
               onChange={(e) => field.onChange(e.value)}
-              onLabel="Impermeabilizacao"
-              offLabel="Impermeabilizacao"
+              onLabel="Impermeabilização"
+              offLabel="Impermeabilização"
             />
           )}
         />

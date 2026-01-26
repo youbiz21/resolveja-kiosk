@@ -39,7 +39,7 @@ export const Formularios: Record<SimuladorFormKeys, FormularioEntry> = {
     })
   },
   sofa: {
-    nome: 'Sofa',
+    nome: 'Sofá',
     icone: 'sofa',
     defaultValues: (): SofaFormValue => ({
       lugares: 1,
@@ -54,7 +54,7 @@ export const Formularios: Record<SimuladorFormKeys, FormularioEntry> = {
     })
   },
   colchao: {
-    nome: 'Colchao',
+    nome: 'Colchão',
     icone: 'colchao-casal',
     defaultValues: (): ColchaoFormValue => ({
       formato: 'casal',
@@ -127,7 +127,7 @@ export const Formularios: Record<SimuladorFormKeys, FormularioEntry> = {
     })
   },
   carpete: {
-    nome: 'Tapete / Carpete (Domicilio)',
+    nome: 'Tapete / Carpete (Domicílio)',
     icone: 'tapete',
     defaultValues: (): CarpeteFormValue => ({
       formato: 'retangulo',
@@ -146,7 +146,7 @@ export const Formularios: Record<SimuladorFormKeys, FormularioEntry> = {
     })
   },
   pousaPes: {
-    nome: 'Pousa-Pes',
+    nome: 'Pousa-Pés',
     icone: 'pousa-pes',
     defaultValues: (): PousaPesFormValue => ({
       tamanho: 'pequeno',

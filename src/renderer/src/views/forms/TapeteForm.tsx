@@ -9,7 +9,7 @@ import type { IAbstractFormValue, TapeteFormValue } from '../../types/models'
 
 const PRESETS_RETANGULO = [
   { key: 'pequeno', label: 'Pequeno', y: 0.6, x: 0.9 },
-  { key: 'medio', label: 'Medio', y: 1.0, x: 1.5 },
+  { key: 'medio', label: 'Médio', y: 1.0, x: 1.5 },
   { key: 'grande', label: 'Grande', y: 1.4, x: 2.0 },
   { key: 'extragrande', label: 'Extra Grande', y: 2.0, x: 3.0 }
 ]
@@ -66,7 +66,7 @@ export default function TapeteForm({ values, onChange }: Props): React.JSX.Eleme
     onChange(getValues())
   }, [formato, x, y, a, d, medida, limpeza, onChange, getValues])
 
-  const selectRetanguloPreset = (preset: (typeof PRESETS_RETANGULO)[number]): void => {
+  const selectRetânguloPreset = (preset: (typeof PRESETS_RETANGULO)[number]): void => {
     setSizePreset(preset.key)
     setValue('y', preset.y)
     setValue('x', preset.x)
@@ -99,10 +99,10 @@ export default function TapeteForm({ values, onChange }: Props): React.JSX.Eleme
   }
 
   const getKeypadLabel = (): string => {
-    if (keypadField === 'y') return 'Medida Y (metros)'
-    if (keypadField === 'x') return 'Medida X (metros)'
+    if (keypadField === 'y') return 'Altura (metros)'
+    if (keypadField === 'x') return 'Largura (metros)'
     if (keypadField === 'a') return 'Lado (metros)'
-    if (keypadField === 'd') return 'Diametro (metros)'
+    if (keypadField === 'd') return 'Diâmetro (metros)'
     return ''
   }
 
@@ -118,7 +118,7 @@ export default function TapeteForm({ values, onChange }: Props): React.JSX.Eleme
               <IconCard
                 className="flex-initial border-round-lg surface-300 w-8rem"
                 icon="tapete-retangulo"
-                labelContent={<span className="block">Retangulo</span>}
+                labelContent={<span className="block">Retângulo</span>}
                 selected={field.value === 'retangulo'}
                 onClick={() => field.onChange('retangulo')}
               >
@@ -159,7 +159,7 @@ export default function TapeteForm({ values, onChange }: Props): React.JSX.Eleme
         />
       </div>
 
-      <div className="label">2. Servico</div>
+      <div className="label">2. Serviço</div>
       <div className="flex flex-wrap gap-3 justify-content-center">
         <Controller
           name="limpeza"
@@ -176,7 +176,7 @@ export default function TapeteForm({ values, onChange }: Props): React.JSX.Eleme
         />
       </div>
 
-      <div className="label">4. Medida</div>
+      <div className="label">3. Medida</div>
       <div className="flex flex-column justify-content-center flex-wrap gap-3 align-items-center">
         {formato === 'retangulo' && (
           <>
@@ -186,7 +186,7 @@ export default function TapeteForm({ values, onChange }: Props): React.JSX.Eleme
                 <div
                   key={p.key}
                   className={`measure-option${sizePreset === p.key ? ' active' : ''}`}
-                  onClick={() => selectRetanguloPreset(p)}
+                  onClick={() => selectRetânguloPreset(p)}
                 >
                   <span className="measure-option-label">{p.label}</span>
                   <span className="measure-option-detail">
@@ -295,7 +295,7 @@ export default function TapeteForm({ values, onChange }: Props): React.JSX.Eleme
             {sizePreset === 'custom' && (
               <div className="flex flex-wrap align-items-center gap-3 justify-content-center">
                 <span className="flex align-items-center gap-2">
-                  <label>Diametro</label>
+                  <label>Diâmetro</label>
                   <div className="measure-input" onClick={() => setKeypadField('d')}>
                     {(d || 0).toFixed(2)}
                     <span className="measure-input-unit">m</span>

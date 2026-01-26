@@ -12,7 +12,7 @@ import type {
 } from '../types/models'
 
 export class GeradorDeNomeProduto {
-  readonly ServicoDomicilio = 'Servico ao domicilio'
+  readonly ServicoDomicilio = 'Serviço ao Domicílio'
   readonly Lavanderia = 'Lavandaria'
 
   public geraNomeItems(form: IAbstractFormValue[]): string[] {
@@ -70,7 +70,7 @@ export class GeradorDeNomeProduto {
         ? 'Quadrado'
         : tapete.formato == 'redondo'
           ? 'Redondo'
-          : 'Retangulo'
+          : 'Retângulo'
     const medida =
       tapete.formato == 'quadrado'
         ? `${tapete.a.toFixed(2)} m`
@@ -89,7 +89,7 @@ export class GeradorDeNomeProduto {
         ? 'Quadrado'
         : carpete.formato == 'redondo'
           ? 'Redondo'
-          : 'Retangulo'
+          : 'Retângulo'
     const medida =
       carpete.formato == 'quadrado'
         ? `${carpete.a.toFixed(2)} m`
@@ -108,7 +108,7 @@ export class GeradorDeNomeProduto {
         ? 'Assento'
         : cadeira.areaALimpar == 'assentoCostas'
           ? 'Assento e Costas'
-          : 'Assento, Costas e Banco'
+          : 'Assento, Costas e Braços'
     tokens.push(
       `Cadeira ${cadeira.caracteristica == 'pele' ? 'de Pele' : 'de Tecido'} (${areaLimpar})`
     )
@@ -121,7 +121,7 @@ export class GeradorDeNomeProduto {
     let formato: string
     switch (colchao.formato) {
       case 'berco':
-        formato = 'Berco'
+        formato = 'Berço'
         break
       case 'casal':
         formato = 'Casal'
@@ -133,7 +133,7 @@ export class GeradorDeNomeProduto {
         formato = 'King'
         break
     }
-    tokens.push(`Colchao ${formato}`)
+    tokens.push(`Colchão ${formato}`)
     tokens.push(this.ServicoDomicilio)
     return tokens.join('/ ')
   }
@@ -148,7 +148,7 @@ export class GeradorDeNomeProduto {
   public nomePousaPes(pousaPes: PousaPesFormValue): string {
     const tokens: string[] = []
     tokens.push(
-      `Pousa Pes ${pousaPes.tamanho == 'pequeno' ? 'Pequeno' : pousaPes.tamanho == 'medio' ? 'Medio' : 'Grande'}`
+      `Pousa-Pés ${pousaPes.tamanho == 'pequeno' ? 'Pequeno' : pousaPes.tamanho == 'medio' ? 'Médio' : 'Grande'}`
     )
     tokens.push(this.ServicoDomicilio)
     return tokens.join('/ ')
@@ -157,7 +157,7 @@ export class GeradorDeNomeProduto {
   public nomeSofa(sofa: SofaFormValue): string {
     const tokens: string[] = []
     tokens.push(
-      `Sofa ${sofa.acabamento == 'pele' ? 'de Pele' : 'de Tecido'} (${sofa.lugares} lugares)`
+      `Sofá ${sofa.acabamento == 'pele' ? 'de Pele' : 'de Tecido'} (${sofa.lugares} lugares)`
     )
     tokens.push(this.ServicoDomicilio)
     return tokens.join('/ ')
