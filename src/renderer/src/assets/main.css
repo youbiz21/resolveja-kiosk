@@ -377,9 +377,9 @@ label[for] {
 /* Checkout badges */
 .checkout-badge {
   display: inline-block;
-  padding: 0.2rem 0.6rem;
+  padding: 0.3rem 0.75rem;
   border-radius: 6px;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 600;
   margin-top: 0.35rem;
 }

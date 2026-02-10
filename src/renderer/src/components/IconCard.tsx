@@ -29,14 +29,14 @@ export default function IconCard({
       onClick={onClick}
       style={onClick ? { cursor: 'pointer' } : undefined}
     >
-      <div className="flex flex-column p-3 align-items-center h-full">
+      <div className="flex flex-column p-3 align-items-center justify-content-center h-full">
         <Icon icon={icon} />
         {labelContent ? (
           <div className="py-1">{labelContent}</div>
         ) : label ? (
           <span>{label}</span>
         ) : null}
-        <div className="mt-auto">{children}</div>
+        <div>{children}</div>
       </div>
     </div>
   )
