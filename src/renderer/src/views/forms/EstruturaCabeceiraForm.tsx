@@ -42,7 +42,7 @@ export default function EstruturaCabeceiraForm({ values, onChange }: Props): Rea
           render={({ field }) => (
             <>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="cabeceira-da-cama"
                 labelContent={<span className="block">Cabeceira</span>}
                 selected={field.value === 'cabeceira'}
@@ -55,7 +55,7 @@ export default function EstruturaCabeceiraForm({ values, onChange }: Props): Rea
                 />
               </IconCard>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="estrutura-da-cama"
                 labelContent={<span className="block text-center">Estrutura</span>}
                 selected={field.value === 'estrutura'}
@@ -68,7 +68,7 @@ export default function EstruturaCabeceiraForm({ values, onChange }: Props): Rea
                 />
               </IconCard>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="cabeiceira-e-estrutura"
                 labelContent={<span className="block text-center">Estrutura e Cabeceira</span>}
                 selected={field.value === 'ambos'}

@@ -24,11 +24,12 @@ export default function ConfirmacaoView(): React.JSX.Element {
   }
 
   return (
-    <div>
+    <div className="page-fill">
       <hr />
+      <div className="page-fill-content">
       <div className="py-5 flex justify-content-center flex-column align-items-center">
-        <i className="pi pi-thumbs-up block text-primary mb-3" style={{ fontSize: '3rem' }}></i>
-        <span className="block font-bold text-xl">PEDIDO CONFIRMADO</span>
+        <i className="pi pi-thumbs-up block text-primary mb-3" style={{ fontSize: '5rem' }}></i>
+        <span className="block font-bold" style={{ fontSize: '1.8rem' }}>PEDIDO CONFIRMADO</span>
       </div>
       <div className="grid">
         <div className="col-9 pr-0">
@@ -44,7 +45,7 @@ export default function ConfirmacaoView(): React.JSX.Element {
         </div>
       </div>
       <div className="py-3 flex flex-column justify-content-center align-items-center">
-        <div className="text-center w-20rem" style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
+        <div className="text-center" style={{ fontSize: '1.3rem', lineHeight: '1.6', maxWidth: '30rem' }}>
           Iremos entrar em contacto nas próximas 24 horas úteis para agendar o dia e a hora. Muito
           obrigado!
         </div>
@@ -56,6 +57,7 @@ export default function ConfirmacaoView(): React.JSX.Element {
             onClick={voltar}
           />
         </div>
+      </div>
       </div>
     </div>
   )

@@ -45,7 +45,29 @@ div.label {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
+}
+
+/* Form description text */
+div.label + span small,
+.cadastro-section-hint,
+.cadastro-field-hint,
+form small {
+  font-size: 1rem;
+}
+
+/* Full-height page layout for all views */
+.page-fill {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 4rem);
+}
+
+.page-fill-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .p-radiobutton,

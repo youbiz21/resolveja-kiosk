@@ -42,7 +42,7 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
           render={({ field }) => (
             <>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="cadeira"
                 labelContent={<span className="block">Assento</span>}
                 selected={field.value === 'assento'}
@@ -55,7 +55,7 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
                 />
               </IconCard>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="cadeira"
                 labelContent={<span className="block text-center">Assento e Costas</span>}
                 selected={field.value === 'assentoCostas'}
@@ -68,7 +68,7 @@ export default function CadeirasForm({ values, onChange }: Props): React.JSX.Ele
                 />
               </IconCard>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="cadeira"
                 labelContent={<span className="block text-center">Assento, Costas e Braços</span>}
                 selected={field.value === 'assentoCostasBraco'}

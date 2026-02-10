@@ -130,7 +130,7 @@ export default function CheckoutView(): React.JSX.Element {
   const hasLavanderia = simulador.items.some((i) => i.tipo === 'lavanderia')
 
   return (
-    <div>
+    <div className="page-fill">
       <div>
         <button type="button" className="btn-back" onClick={() => stepper.prev()}>
           <i className="pi pi-arrow-left"></i>

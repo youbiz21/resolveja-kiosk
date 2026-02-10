@@ -180,7 +180,7 @@ export default function CadastroView(): React.JSX.Element {
   const isFormIncomplete = !dataAgendamento || !horaAgendamento
 
   return (
-    <div className={activeInput ? 'keyboard-open' : ''}>
+    <div className={`page-fill${activeInput ? ' keyboard-open' : ''}`}>
       <div>
         <button type="button" className="btn-back" onClick={() => stepper.prev()}>
           <i className="pi pi-arrow-left"></i>

@@ -123,7 +123,7 @@ export default function TapeteForm({ values, onChange }: Props): React.JSX.Eleme
           render={({ field }) => (
             <>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="tapete-retangulo"
                 labelContent={<span className="block">Retângulo</span>}
                 selected={field.value === 'retangulo'}
@@ -136,7 +136,7 @@ export default function TapeteForm({ values, onChange }: Props): React.JSX.Eleme
                 />
               </IconCard>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="tapete-quadrado"
                 labelContent={<span className="block">Quadrado</span>}
                 selected={field.value === 'quadrado'}
@@ -149,7 +149,7 @@ export default function TapeteForm({ values, onChange }: Props): React.JSX.Eleme
                 />
               </IconCard>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="tapete-redondo"
                 labelContent={<span className="block">Redondo</span>}
                 selected={field.value === 'redondo'}

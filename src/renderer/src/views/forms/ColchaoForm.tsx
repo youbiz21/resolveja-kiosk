@@ -41,7 +41,7 @@ export default function ColchaoForm({ values, onChange }: Props): React.JSX.Elem
           render={({ field }) => (
             <>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="colchao-casal"
                 selected={field.value === 'casal'}
                 onClick={() => field.onChange('casal')}
@@ -61,7 +61,7 @@ export default function ColchaoForm({ values, onChange }: Props): React.JSX.Elem
                 />
               </IconCard>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="colchao-king-size"
                 selected={field.value === 'king'}
                 onClick={() => field.onChange('king')}
@@ -81,7 +81,7 @@ export default function ColchaoForm({ values, onChange }: Props): React.JSX.Elem
                 />
               </IconCard>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="colchao-individual"
                 selected={field.value === 'individual'}
                 onClick={() => field.onChange('individual')}
@@ -101,7 +101,7 @@ export default function ColchaoForm({ values, onChange }: Props): React.JSX.Elem
                 />
               </IconCard>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="berco"
                 selected={field.value === 'berco'}
                 onClick={() => field.onChange('berco')}

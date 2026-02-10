@@ -55,7 +55,7 @@ export default function SofaForm({ values, onChange }: Props): React.JSX.Element
         </span>
       </div>
       <div className="flex justify-content-center">
-        <div className="flex flex-column align-content-center flex-wrap shadow-3 w-12rem">
+        <div className="flex flex-column align-content-center flex-wrap shadow-3 w-16rem">
           <div className="flex flex-column p-3 align-items-center h-full">
             <Icon icon={sofaIcon} viewbox="" width={140} height={50} />
             <div className="py-1">

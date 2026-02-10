@@ -41,7 +41,7 @@ export default function PousaPesForm({ values, onChange }: Props): React.JSX.Ele
           render={({ field }) => (
             <>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="pousa-pes"
                 selected={field.value === 'pequeno'}
                 onClick={() => field.onChange('pequeno')}
@@ -61,7 +61,7 @@ export default function PousaPesForm({ values, onChange }: Props): React.JSX.Ele
                 />
               </IconCard>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="pousa-pes"
                 selected={field.value === 'medio'}
                 onClick={() => field.onChange('medio')}
@@ -84,7 +84,7 @@ export default function PousaPesForm({ values, onChange }: Props): React.JSX.Ele
                 />
               </IconCard>
               <IconCard
-                className="flex-initial border-round-lg surface-300 w-8rem"
+                className="flex-initial border-round-lg surface-300 w-12rem"
                 icon="pousa-pes"
                 selected={field.value === 'grande'}
                 onClick={() => field.onChange('grande')}

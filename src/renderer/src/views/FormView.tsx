@@ -117,7 +117,7 @@ export default function FormView(): React.JSX.Element {
   }
 
   return (
-    <div>
+    <div className="page-fill">
       <Toast ref={toast} position="top-right" />
       <button type="button" className="btn-back" onClick={() => stepper.prev()}>
         <i className="pi pi-arrow-left"></i>
