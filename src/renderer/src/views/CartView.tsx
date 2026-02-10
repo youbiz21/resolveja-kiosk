@@ -138,10 +138,10 @@ export default function CartView(): React.JSX.Element {
       )}
 
       {!hasItems && (
-        <p className="text-center text-color-secondary mt-2 mb-2">
-          <i className="pi pi-info-circle" style={{ marginRight: '0.4rem' }}></i>
-          Selecione pelo menos um item para continuar
-        </p>
+        <div className="btn-requirement-hint mt-2 mb-2">
+          <i className="pi pi-info-circle"></i>
+          <span>Selecione pelo menos um item para continuar</span>
+        </div>
       )}
 
       <div className="text-center mt-3">

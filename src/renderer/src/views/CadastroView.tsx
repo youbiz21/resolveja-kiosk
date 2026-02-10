@@ -423,8 +423,9 @@ export default function CadastroView(): React.JSX.Element {
             iconPos="right"
           />
           {isFormIncomplete && (
-            <div className="cadastro-field-hint mt-2">
-              Selecione uma data e um horário para continuar
+            <div className="btn-requirement-hint">
+              <i className="pi pi-info-circle"></i>
+              <span>Selecione uma data e um horário para continuar</span>
             </div>
           )}
         </div>

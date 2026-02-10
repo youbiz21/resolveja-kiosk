@@ -70,6 +70,38 @@ form small {
   justify-content: center;
 }
 
+/* Make TabView stretch inside page-fill */
+.page-fill .p-tabview {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-fill .p-tabview-panels {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-fill .p-tabview-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Forms inside page-fill stretch and distribute sections */
+.page-fill form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+/* Checkout stretches its content */
+.page-fill > .flex-column {
+  flex: 1;
+}
+
 .p-radiobutton,
 .p-radiobutton-box,
 .p-togglebutton,
@@ -83,7 +115,7 @@ label[for] {
   position: absolute;
   left: 50%;
   top: 100%;
-  color: gray;
+  color: var(--text-color-secondary);
   font-size: 1rem;
   transform: translate(-50%, 0);
 }
@@ -94,12 +126,20 @@ label[for] {
 .p-radiobutton .p-radiobutton-box {
   width: 40px;
   height: 40px;
+  flex-shrink: 0;
+}
+
+/* Smaller radio inside compact option cards */
+.radio-option .p-radiobutton .p-radiobutton-box,
+.icon-card-selectable .p-radiobutton .p-radiobutton-box {
+  width: 28px;
+  height: 28px;
 }
 
 /* Bigger toggle buttons */
 .p-togglebutton {
-  min-height: 48px;
-  font-size: 1rem;
+  min-height: 60px;
+  font-size: 1.1rem;
 }
 
 /* Bigger form inputs */
@@ -134,14 +174,15 @@ label[for] {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.6rem 1.2rem;
+  padding: 0.85rem 1.6rem;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
   color: var(--text-color);
   cursor: pointer;
   transition: background-color 0.15s;
-  border: none;
-  background: transparent;
+  border: 1px solid var(--surface-300);
+  background: var(--surface-100);
 }
 
 .btn-back:active {
@@ -164,15 +205,16 @@ label[for] {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2rem;
   border-radius: 12px;
   cursor: pointer;
   background: var(--surface-100);
-  border: 2px solid transparent;
+  border: 3px solid transparent;
   transition:
     border-color 0.15s,
     background-color 0.15s;
-  min-width: 100px;
+  min-width: 140px;
+  font-size: 1.1rem;
 }
 
 .radio-option:active {
@@ -182,12 +224,15 @@ label[for] {
 /* Make IconCards with radio buttons fully tappable */
 .icon-card-selectable {
   cursor: pointer;
-  border: 2px solid transparent;
-  transition: border-color 0.15s;
+  border: 3px solid transparent;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
 }
 
 .icon-card-selectable.selected {
   border-color: var(--primary-color);
+  background: var(--primary-50, #fef5e7);
 }
 
 /* Measure option buttons (predefined sizes) */
@@ -203,15 +248,15 @@ label[for] {
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
-  padding: 0.75rem 1.25rem;
+  padding: 1rem 1.5rem;
   border-radius: 12px;
   cursor: pointer;
   background: var(--surface-100);
-  border: 2px solid transparent;
+  border: 3px solid transparent;
   transition:
     border-color 0.15s,
     background-color 0.15s;
-  min-width: 120px;
+  min-width: 140px;
   font-size: 1rem;
 }
 
@@ -231,7 +276,7 @@ label[for] {
 
 .measure-option .measure-option-detail {
   color: var(--text-color-secondary);
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 
 /* Tappable measure input field (for custom sizes) */
@@ -257,7 +302,7 @@ label[for] {
 
 .measure-input .measure-input-unit {
   color: var(--text-color-secondary);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 /* Numeric Keypad overlay */
@@ -373,7 +418,23 @@ label[for] {
 
 /* Visually disabled button that still accepts clicks */
 .btn-disabled-look {
-  opacity: 0.6;
+  opacity: 1;
+  background: var(--surface-300) !important;
+  color: var(--text-color-secondary) !important;
+  border-color: var(--surface-400) !important;
+  cursor: not-allowed;
+}
+
+/* Requirement hint below disabled buttons */
+.btn-requirement-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-top: 0.75rem;
 }
 
 /* Checkout — item cards */
@@ -421,7 +482,7 @@ label[for] {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-color-secondary);
   text-transform: uppercase;
@@ -504,7 +565,7 @@ label[for] {
   border-radius: 50%;
   background: var(--primary-color);
   color: #fff;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -532,7 +593,7 @@ label[for] {
   border-radius: 20px;
   background: var(--primary-100, #fde4be);
   color: var(--primary-800, #90561e);
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -616,7 +677,7 @@ label[for] {
   border: 2px solid var(--primary-color);
   background: transparent;
   color: var(--primary-color);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition: background 0.15s;
@@ -651,7 +712,7 @@ label[for] {
 
 /* Subtle hint below section headers */
 .cadastro-section-hint {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--text-color-secondary);
   margin-bottom: 0.75rem;
 }
@@ -659,7 +720,7 @@ label[for] {
 /* Small hint below individual fields */
 .cadastro-field-hint {
   display: block;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: var(--text-color-secondary);
   margin-top: 0.3rem;
 }
@@ -670,7 +731,7 @@ label[for] {
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-color-secondary);
   margin: 1rem 0 0.75rem;
@@ -808,7 +869,7 @@ label[for] {
   border-radius: 8px;
   background: transparent;
   color: var(--primary-color);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.15s;
@@ -819,7 +880,7 @@ label[for] {
 }
 
 .virtual-keyboard-hide i {
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 
 .virtual-keyboard-theme {
@@ -861,6 +922,101 @@ label[for] {
 
 .keyboard-open {
   padding-bottom: 420px;
+}
+
+/* Better contrast for secondary text */
+:root {
+  --text-color-secondary: #495057;
+}
+
+.text-500 {
+  color: #495057 !important;
+}
+
+/* Step Indicator */
+.step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.step-indicator-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.step-indicator-line {
+  position: absolute;
+  top: 22px;
+  right: 50%;
+  width: 100%;
+  height: 3px;
+  background: var(--surface-300);
+  z-index: 0;
+}
+
+.step-indicator-line.completed {
+  background: var(--green-500, #4caf50);
+}
+
+.step-indicator-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  background: var(--surface-200);
+  color: var(--text-color-secondary);
+  border: 3px solid var(--surface-300);
+  z-index: 1;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.step-indicator-circle.current {
+  background: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.step-indicator-circle.completed {
+  background: var(--green-500, #4caf50);
+  color: #fff;
+  border-color: var(--green-500, #4caf50);
+}
+
+.step-indicator-circle.completed i {
+  font-size: 0.9rem;
+}
+
+.step-indicator-label {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-color-secondary);
+  text-align: center;
+}
+
+.step-indicator-label.current {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.step-indicator-label.completed {
+  color: var(--green-500, #4caf50);
+  font-weight: 600;
 }
 
 /* Scrollbar hidden for kiosk */

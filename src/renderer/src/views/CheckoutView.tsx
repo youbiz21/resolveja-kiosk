@@ -64,14 +64,14 @@ function ItemCard({
           </div>
 
           {isQuota && (
-            <div className="text-500 text-sm mt-1">
-              <i className="pi pi-info-circle mr-1" style={{ fontSize: '0.8rem' }}></i>O valor
+            <div className="text-500 text-base mt-1">
+              <i className="pi pi-info-circle mr-1" style={{ fontSize: '1rem' }}></i>O valor
               mínimo de encomenda é 70,00 €. Este valor complementa o total dos serviços.
             </div>
           )}
 
           <div className="checkout-section-label mt-3 mb-2">
-            <i className="pi pi-check-circle" style={{ fontSize: '0.85rem' }}></i>
+            <i className="pi pi-check-circle" style={{ fontSize: '1rem' }}></i>
             <span>Serviços selecionados</span>
           </div>
 
@@ -140,7 +140,7 @@ export default function CheckoutView(): React.JSX.Element {
       <hr className="mb-3" />
 
       {simulador.items.length > 0 ? (
-        <div className="flex flex-column gap-2">
+        <div className="flex flex-column gap-2" style={{ flex: 1 }}>
           <div>
             {simulador.items.map((item, index) => (
               <ItemCard key={index} item={item} onDelete={() => simulador.deleteItem(item)} />
@@ -191,7 +191,7 @@ export default function CheckoutView(): React.JSX.Element {
               </span>
             </div>
 
-            <div className="text-500 text-sm mt-2">*Valores com IVA incluído</div>
+            <div className="text-500 text-base mt-2">*Valores com IVA incluído</div>
           </div>
 
           {possuiOferta && (
@@ -232,7 +232,7 @@ export default function CheckoutView(): React.JSX.Element {
             </div>
           )}
 
-          <div className="flex justify-content-center gap-3">
+          <div className="flex justify-content-center gap-3 mt-auto pt-3">
             <Button
               label="Adicionar Serviço"
               icon="pi pi-plus"
@@ -250,8 +250,8 @@ export default function CheckoutView(): React.JSX.Element {
           </div>
         </div>
       ) : (
-        <div className="flex flex-column align-items-center justify-content-center py-8 gap-4">
-          <i className="pi pi-shopping-cart text-400" style={{ fontSize: '4rem' }}></i>
+        <div className="flex flex-column align-items-center justify-content-center gap-4" style={{ flex: 1 }}>
+          <i className="pi pi-shopping-cart text-400" style={{ fontSize: '5rem' }}></i>
           <div className="text-500 text-lg">O seu carrinho está vazio.</div>
           <Button
             label="Voltar ao Início"

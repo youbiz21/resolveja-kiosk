@@ -143,7 +143,7 @@ export default function FormView(): React.JSX.Element {
               }
             >
               {renderForm(type, item, (updated) => cart.updateItem(index, updated))}
-              <div className="text-center mt-4">
+              <div className="text-center mt-auto pt-6">
                 <Button
                   label="Avançar"
                   icon="pi pi-arrow-right"
@@ -151,6 +151,12 @@ export default function FormView(): React.JSX.Element {
                   className={`w-full sm:w-20rem${!isFormValid(cart.items[tabIndex]) ? ' btn-disabled-look' : ''}`}
                   onClick={avancar}
                 />
+                {!isFormValid(cart.items[tabIndex]) && (
+                  <div className="btn-requirement-hint">
+                    <i className="pi pi-info-circle"></i>
+                    <span>Preencha os campos acima para continuar</span>
+                  </div>
+                )}
               </div>
             </TabPanel>
           )

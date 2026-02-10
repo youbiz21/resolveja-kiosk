@@ -8,6 +8,7 @@ import FormView from './views/FormView'
 import CheckoutView from './views/CheckoutView'
 import CadastroView from './views/CadastroView'
 import ConfirmacaoView from './views/ConfirmacaoView'
+import StepIndicator from './components/StepIndicator'
 
 const IDLE_TIMEOUT_MS = 60 * 1000
 
@@ -51,6 +52,7 @@ function AppContent(): React.JSX.Element {
 
   return (
     <>
+      <StepIndicator />
       {content}
       {showScreenSaver && <ScreenSaver onDismiss={onDismiss} />}
     </>
