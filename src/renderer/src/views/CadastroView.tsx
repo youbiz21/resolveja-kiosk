@@ -46,9 +46,7 @@ function simulateNativeInput(input: HTMLInputElement, newValue: string): void {
 function getMinDate(): Date {
   const date = new Date()
   date.setDate(date.getDate() + 3)
-  const day = date.getDay()
-  if (day === 6) date.setDate(date.getDate() + 2) // Sábado → Segunda
-  if (day === 0) date.setDate(date.getDate() + 1) // Domingo → Segunda
+  if (date.getDay() === 0) date.setDate(date.getDate() + 1) // Domingo → Segunda
   return date
 }
 
@@ -381,7 +379,7 @@ export default function CadastroView(): React.JSX.Element {
                   locale="pt"
                   dateFormat="dd/mm/yy"
                   minDate={getMinDate()}
-                  disabledDays={[0, 6]}
+                  disabledDays={[0]}
                   showIcon={false}
                   value={field.value}
                   onChange={(e) => {
