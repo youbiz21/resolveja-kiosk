@@ -53,7 +53,7 @@ function ItemCard({
         <div className="flex-grow-1">
           <div className="flex justify-content-between align-items-start">
             <div>
-              <div className="font-bold text-lg">{nomeProduto}</div>
+              <div className="font-bold" style={{ fontSize: '1.4rem' }}>{nomeProduto}</div>
               {tipoServico && <span className={`checkout-badge ${badgeClass}`}>{tipoServico}</span>}
             </div>
             {!isQuota && (
@@ -77,10 +77,10 @@ function ItemCard({
 
           <div>
             {item.resumo.detalhes.map((detalhe, di) => (
-              <div key={di} className="checkout-detail-row">
+              <div key={di} className="checkout-detail-row" style={{ fontSize: '1.1rem' }}>
                 <span className="text-700">{detalhe.detalhe}</span>
                 <span className="checkout-detail-dots"></span>
-                <span className="font-medium">{formatCurrency(detalhe.valor)}</span>
+                <span className="font-bold" style={{ fontSize: '1.2rem' }}>{formatCurrency(detalhe.valor)}</span>
               </div>
             ))}
             {item.resumo.detalhes.length > 1 && (
@@ -89,7 +89,7 @@ function ItemCard({
                 <div className="checkout-detail-row">
                   <span></span>
                   <span></span>
-                  <span className="font-bold">Subtotal {formatCurrency(item.resumo.total)}</span>
+                  <span className="font-bold" style={{ fontSize: '1.3rem' }}>Subtotal {formatCurrency(item.resumo.total)}</span>
                 </div>
               </>
             )}
@@ -126,8 +126,11 @@ export default function CheckoutView(): React.JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [adicionalSelected, possuiOferta])
 
+  const quotaItem = simulador.items.find((i) => !i.icone)
+  const quotaValue = quotaItem ? quotaItem.resumo.total : 0
   const hasDomicilio = simulador.items.some((i) => i.tipo === 'domicilio')
-  const hasLavanderia = simulador.items.some((i) => i.tipo === 'lavanderia')
+  const hasLavanderia = simulador.items.some((i) => i.tipo === 'lavanderia' && i.icone)
+  const totalLavanderiaReal = simulador.totalLavanderia - quotaValue
 
   return (
     <div className="page-fill">
@@ -149,33 +152,40 @@ export default function CheckoutView(): React.JSX.Element {
 
           <div className="checkout-summary surface-100 border-round-xl p-3 mb-3">
             {hasDomicilio && (
-              <div className="checkout-detail-row mb-2">
+              <div className="checkout-detail-row mb-2" style={{ fontSize: '1.1rem' }}>
                 <span className="text-700">Serviços ao Domicílio</span>
                 <span className="checkout-detail-dots"></span>
-                <span className="font-medium">{formatCurrency(simulador.totalDomicilio)}</span>
+                <span className="font-bold" style={{ fontSize: '1.2rem' }}>{formatCurrency(simulador.totalDomicilio)}</span>
               </div>
             )}
             {simulador.descontosDomicilio > 0 && (
-              <div className="checkout-detail-row mb-2">
+              <div className="checkout-detail-row mb-2" style={{ fontSize: '1.1rem' }}>
                 <span className="text-700">Desconto Domicílio</span>
                 <span className="checkout-detail-dots"></span>
-                <span className="font-medium text-green-600">
+                <span className="font-bold text-green-600" style={{ fontSize: '1.2rem' }}>
                   -{formatCurrency(simulador.descontosDomicilio)}
                 </span>
               </div>
             )}
             {hasLavanderia && (
-              <div className="checkout-detail-row mb-2">
+              <div className="checkout-detail-row mb-2" style={{ fontSize: '1.1rem' }}>
                 <span className="text-700">Serviços de Lavandaria</span>
                 <span className="checkout-detail-dots"></span>
-                <span className="font-medium">{formatCurrency(simulador.totalLavanderia)}</span>
+                <span className="font-bold" style={{ fontSize: '1.2rem' }}>{formatCurrency(totalLavanderiaReal)}</span>
+              </div>
+            )}
+            {quotaItem && (
+              <div className="checkout-detail-row mb-2" style={{ fontSize: '1.1rem' }}>
+                <span className="text-700">Quota mínima</span>
+                <span className="checkout-detail-dots"></span>
+                <span className="font-bold" style={{ fontSize: '1.2rem' }}>{formatCurrency(quotaValue)}</span>
               </div>
             )}
             {simulador.descontosLavanderia > 0 && (
-              <div className="checkout-detail-row mb-2">
+              <div className="checkout-detail-row mb-2" style={{ fontSize: '1.1rem' }}>
                 <span className="text-700">Desconto Lavandaria</span>
                 <span className="checkout-detail-dots"></span>
-                <span className="font-medium text-green-600">
+                <span className="font-bold text-green-600" style={{ fontSize: '1.2rem' }}>
                   -{formatCurrency(simulador.descontosLavanderia)}
                 </span>
               </div>
@@ -184,14 +194,14 @@ export default function CheckoutView(): React.JSX.Element {
             <div className="checkout-detail-separator"></div>
 
             <div className="checkout-detail-row mt-2">
-              <span className="font-bold text-xl">Total</span>
+              <span className="font-bold" style={{ fontSize: '2rem' }}>Total</span>
               <span></span>
-              <span className="font-bold text-xl">
+              <span className="font-bold text-primary" style={{ fontSize: '2rem' }}>
                 {formatCurrency(simulador.totalComDesconto)}
               </span>
             </div>
 
-            <div className="text-500 text-base mt-2">*Valores com IVA incluído</div>
+            <div className="text-500 mt-2">*Valores com IVA incluído</div>
           </div>
 
           {possuiOferta && (
@@ -202,8 +212,8 @@ export default function CheckoutView(): React.JSX.Element {
               </div>
               <div className="flex gap-3 mb-3 justify-content-center">
                 <label
-                  className="flex align-items-center gap-2 cursor-pointer surface-100 border-round-lg px-4 py-3"
-                  style={{ minWidth: 224 }}
+                  className={`flex align-items-center gap-3 cursor-pointer border-round-lg px-4 py-3 font-bold text-lg ${adicionalSelected === true ? 'border-primary bg-primary-50' : 'surface-100'}`}
+                  style={{ minWidth: 260, border: '3px solid', borderColor: adicionalSelected === true ? 'var(--primary-color)' : 'transparent' }}
                 >
                   <RadioButton
                     value={true}
@@ -213,8 +223,8 @@ export default function CheckoutView(): React.JSX.Element {
                   <span>Sim, quero</span>
                 </label>
                 <label
-                  className="flex align-items-center gap-2 cursor-pointer surface-100 border-round-lg px-4 py-3"
-                  style={{ minWidth: 224 }}
+                  className={`flex align-items-center gap-3 cursor-pointer border-round-lg px-4 py-3 font-bold text-lg ${adicionalSelected === false ? 'border-primary bg-primary-50' : 'surface-100'}`}
+                  style={{ minWidth: 260, border: '3px solid', borderColor: adicionalSelected === false ? 'var(--primary-color)' : 'transparent' }}
                 >
                   <RadioButton
                     value={false}
@@ -225,7 +235,7 @@ export default function CheckoutView(): React.JSX.Element {
                 </label>
               </div>
               {adicionalSelected && (
-                <div className="font-bold text-lg text-center">
+                <div className="font-bold text-center" style={{ fontSize: '1.5rem' }}>
                   Valor Total: {formatCurrency(simulador.finalTotal)}
                 </div>
               )}
@@ -237,14 +247,14 @@ export default function CheckoutView(): React.JSX.Element {
               label="Adicionar Serviço"
               icon="pi pi-plus"
               severity="secondary"
-              className="w-full sm:w-auto"
+              className="checkout-action-btn"
               onClick={() => stepper.to(0)}
             />
             <Button
               label="Finalizar"
               icon="pi pi-check"
               iconPos="right"
-              className="w-full sm:w-auto"
+              className="checkout-action-btn checkout-btn-bounce"
               onClick={() => stepper.next()}
             />
           </div>

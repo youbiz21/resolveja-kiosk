@@ -38,14 +38,18 @@ body {
 #root {
   max-width: 100%;
   margin: 0 auto;
-  padding: 2rem 2.5rem;
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 }
 
 div.label {
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.25rem;
 }
 
 /* Form description text */
@@ -60,7 +64,9 @@ form small {
 .page-fill {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 4rem);
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .page-fill-content {
@@ -75,18 +81,21 @@ form small {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 .page-fill .p-tabview-panels {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 .page-fill .p-tabview-panel {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 /* Forms inside page-fill stretch and distribute sections */
@@ -95,6 +104,7 @@ form small {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  min-height: 0;
 }
 
 /* Checkout stretches its content */
@@ -124,16 +134,9 @@ label[for] {
 
 /* Bigger radio buttons */
 .p-radiobutton .p-radiobutton-box {
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-}
-
-/* Smaller radio inside compact option cards */
-.radio-option .p-radiobutton .p-radiobutton-box,
-.icon-card-selectable .p-radiobutton .p-radiobutton-box {
   width: 28px;
   height: 28px;
+  flex-shrink: 0;
 }
 
 /* Bigger toggle buttons */
@@ -515,6 +518,28 @@ label[for] {
   border: 1px solid var(--surface-200);
 }
 
+/* Checkout action buttons (larger) */
+.checkout-action-btn {
+  min-height: 64px !important;
+  font-size: 1.25rem !important;
+  padding: 1rem 2.5rem !important;
+}
+
+/* Gentle bounce animation for Finalizar button */
+@keyframes gentle-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.checkout-btn-bounce {
+  animation: gentle-bounce 2s ease-in-out infinite;
+}
+
 /* Cart service grid */
 .cart-grid {
   display: grid;
@@ -528,7 +553,9 @@ label[for] {
 .cart-page {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 4rem);
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .cart-page-body {
@@ -939,8 +966,9 @@ label[for] {
   align-items: center;
   justify-content: center;
   gap: 0;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
+  padding: 0.4rem 1rem;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
 }
 
 .step-indicator-item {
@@ -953,7 +981,7 @@ label[for] {
 
 .step-indicator-line {
   position: absolute;
-  top: 22px;
+  top: 19px;
   right: 50%;
   width: 100%;
   height: 3px;
@@ -966,8 +994,8 @@ label[for] {
 }
 
 .step-indicator-circle {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1002,8 +1030,8 @@ label[for] {
 }
 
 .step-indicator-label {
-  margin-top: 0.4rem;
-  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-color-secondary);
   text-align: center;

@@ -119,10 +119,12 @@ export default function FormView(): React.JSX.Element {
   return (
     <div className="page-fill">
       <Toast ref={toast} position="top-right" />
-      <button type="button" className="btn-back" onClick={() => stepper.prev()}>
-        <i className="pi pi-arrow-left"></i>
-        <span>Voltar</span>
-      </button>
+      <div>
+        <button type="button" className="btn-back" onClick={() => stepper.prev()}>
+          <i className="pi pi-arrow-left"></i>
+          <span>Voltar</span>
+        </button>
+      </div>
       <TabView
         activeIndex={tabIndex}
         onTabChange={(e) => setTabIndex(e.index)}
@@ -143,7 +145,7 @@ export default function FormView(): React.JSX.Element {
               }
             >
               {renderForm(type, item, (updated) => cart.updateItem(index, updated))}
-              <div className="text-center mt-auto pt-6">
+              <div className="text-center mt-auto pt-3">
                 <Button
                   label="Avançar"
                   icon="pi pi-arrow-right"
