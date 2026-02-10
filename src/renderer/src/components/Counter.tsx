@@ -24,8 +24,8 @@ export default function Counter({
   }
 
   const btnStyle: React.CSSProperties = {
-    width: 44,
-    height: 44,
+    width: 62,
+    height: 62,
     borderRadius: '50%',
     border: 'none',
     fontSize: '1.4rem',
@@ -50,7 +50,7 @@ export default function Counter({
       >
         -
       </button>
-      <span style={{ fontSize: '1.3rem', minWidth: 28, textAlign: 'center', fontWeight: 'bold' }}>
+      <span style={{ fontSize: '1.3rem', minWidth: 40, textAlign: 'center', fontWeight: 'bold' }}>
         {value}
       </span>
       <button

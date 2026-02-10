@@ -1,6 +1,6 @@
 import { useRef, useState, useCallback } from 'react'
 
-const VIDEOS = ['/1.mp4', '/2.mp4', '/3.mp4']
+const VIDEOS = ['./1.mp4', './2.mp4', './3.mp4']
 
 type ScreenSaverProps = {
   onDismiss: () => void

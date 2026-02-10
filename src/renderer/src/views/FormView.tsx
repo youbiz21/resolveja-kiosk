@@ -137,7 +137,7 @@ export default function FormView(): React.JSX.Element {
               key={index}
               header={
                 <span className="flex align-items-center gap-2">
-                  <Icon icon={formulario.icone} width={24} height={24} />
+                  <Icon icon={formulario.icone} width={34} height={34} />
                   <span>{formulario.nome}</span>
                 </span>
               }

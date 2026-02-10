@@ -39,12 +39,12 @@ function ItemCard({
       <div className="flex align-items-start gap-3">
         {item.icone ? (
           <div className="flex-shrink-0">
-            <Icon icon={item.icone} width={48} height={48} />
+            <Icon icon={item.icone} width={68} height={68} />
           </div>
         ) : (
           <div
             className="flex-shrink-0 flex align-items-center justify-content-center"
-            style={{ width: 48, height: 48 }}
+            style={{ width: 68, height: 68 }}
           >
             <i className="pi pi-info-circle text-500" style={{ fontSize: '1.5rem' }}></i>
           </div>
@@ -203,7 +203,7 @@ export default function CheckoutView(): React.JSX.Element {
               <div className="flex gap-3 mb-3 justify-content-center">
                 <label
                   className="flex align-items-center gap-2 cursor-pointer surface-100 border-round-lg px-4 py-3"
-                  style={{ minWidth: 160 }}
+                  style={{ minWidth: 224 }}
                 >
                   <RadioButton
                     value={true}
@@ -214,7 +214,7 @@ export default function CheckoutView(): React.JSX.Element {
                 </label>
                 <label
                   className="flex align-items-center gap-2 cursor-pointer surface-100 border-round-lg px-4 py-3"
-                  style={{ minWidth: 160 }}
+                  style={{ minWidth: 224 }}
                 >
                   <RadioButton
                     value={false}

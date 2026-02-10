@@ -416,7 +416,7 @@ export default function CadastroView(): React.JSX.Element {
           )}
         </div>
 
-        <div className="text-center mt-4" style={{ paddingBottom: activeInput ? '320px' : '0' }}>
+        <div className="text-center mt-4" style={{ paddingBottom: activeInput ? '450px' : '0' }}>
           <Button
             type="submit"
             className={`w-full sm:w-20rem${isFormIncomplete ? ' btn-disabled-look' : ''}`}
