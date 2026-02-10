@@ -19,8 +19,8 @@ type IconProps = {
 
 export default function Icon({
   icon,
-  width = 84,
-  height = 84,
+  width = 110,
+  height = 110,
   viewbox
 }: IconProps): React.JSX.Element {
   const src = iconMap[icon]

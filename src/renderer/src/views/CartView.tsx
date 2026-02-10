@@ -65,8 +65,8 @@ export default function CartView(): React.JSX.Element {
   }
 
   return (
-    <div>
-      <div className="text-center mb-4">
+    <div className="cart-page">
+      <div className="text-center mb-3">
         <h2 className="text-primary mt-0 mb-1">Selecione os seus serviços</h2>
         <p className="text-color-secondary mt-0">
           Escolha os itens que pretende limpar e indique a quantidade
@@ -79,6 +79,7 @@ export default function CartView(): React.JSX.Element {
         icon="servico-ao-domicilio"
         tagIcon="pi-check-circle"
         badgeClass="checkout-badge-domicilio"
+        stretch
       >
         {!showOutros ? (
           <div className="cart-grid">
@@ -100,7 +101,7 @@ export default function CartView(): React.JSX.Element {
             </div>
           </div>
         ) : (
-          <div>
+          <div className="cart-page-body">
             <button
               type="button"
               className="btn-back mb-2"
@@ -121,7 +122,7 @@ export default function CartView(): React.JSX.Element {
       </Section>
 
       {hasItems && (
-        <div className="cart-summary mb-3">
+        <div className="cart-summary mb-2">
           <i className="pi pi-shopping-cart text-primary" style={{ fontSize: '1.2rem' }}></i>
           <span className="font-bold">
             {totalItems} {totalItems === 1 ? 'item selecionado' : 'itens selecionados'}
@@ -137,13 +138,13 @@ export default function CartView(): React.JSX.Element {
       )}
 
       {!hasItems && (
-        <p className="text-center text-color-secondary mt-2 mb-3">
+        <p className="text-center text-color-secondary mt-2 mb-2">
           <i className="pi pi-info-circle" style={{ marginRight: '0.4rem' }}></i>
           Selecione pelo menos um item para continuar
         </p>
       )}
 
-      <div className="text-center mt-4">
+      <div className="text-center mt-3">
         <Button
           label={hasItems ? `Avançar (${totalItems})` : 'Avançar'}
           icon="pi pi-arrow-right"

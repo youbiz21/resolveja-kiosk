@@ -7,6 +7,7 @@ type SectionProps = {
   children: ReactNode
   tagIcon?: string
   badgeClass?: string
+  stretch?: boolean
 }
 
 export default function Section({
@@ -15,12 +16,13 @@ export default function Section({
   icon,
   children,
   tagIcon,
-  badgeClass
+  badgeClass,
+  stretch
 }: SectionProps): React.JSX.Element {
   const src = new URL(`../assets/icons/${icon}.svg`, import.meta.url).href
 
   return (
-    <div className="mb-3">
+    <div className="mb-3" style={stretch ? { display: 'flex', flexDirection: 'column', flex: 1 } : undefined}>
       <img src={`${src}#svgView(viewBox(40,50,100,75))`} width={120} height={60} alt={titulo} />
       <div className="flex gap-2 align-items-center">
         <span className="font-bold text-lg">{titulo}</span>
@@ -37,7 +39,7 @@ export default function Section({
           <span>{descricao}</span>
         </small>
       )}
-      <div className="py-4">{children}</div>
+      <div className="py-3" style={stretch ? { display: 'flex', flexDirection: 'column', flex: 1 } : undefined}>{children}</div>
     </div>
   )
 }
