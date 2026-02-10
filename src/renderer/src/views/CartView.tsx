@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Button } from 'primereact/button'
 import Section from '../components/Section'
 import IconCard from '../components/IconCard'
@@ -23,6 +23,7 @@ const Labels: Record<SimuladorFormKeys, string> = {
 export default function CartView(): React.JSX.Element {
   const cart = useCart()
   const stepper = useStepper()
+  const [showOutros, setShowOutros] = useState(false)
 
   const totalItems = cart.items.length
   const hasItems = totalItems > 0
@@ -79,16 +80,44 @@ export default function CartView(): React.JSX.Element {
         tagIcon="pi-check-circle"
         badgeClass="checkout-badge-domicilio"
       >
-        <div className="cart-grid">
-          {renderCard('sofa', 'Sofá')}
-          {renderCard('colchao', 'Colchão')}
-          {renderCard('estruturaCabeceira', 'Estrutura/Cabeceira')}
-          {renderCard('cortinados', 'Cortinados')}
-          {renderCard('cadeiras', 'Cadeiras')}
-          {renderCard('pousaPes', 'Pousa-pés')}
-          {renderCard('puff', 'Puff')}
-          {renderCard('carpete', 'Tapete / Carpete')}
-        </div>
+        {!showOutros ? (
+          <div className="cart-grid">
+            {renderCard('sofa', 'Sofá')}
+            {renderCard('colchao', 'Colchão')}
+            {renderCard('carpete', 'Tapete / Carpete')}
+            <div
+              className="shadow-3 cart-card-inactive"
+              style={{ cursor: 'pointer' }}
+              onClick={() => setShowOutros(true)}
+            >
+              <div className="flex flex-column p-3 align-items-center justify-content-center h-full">
+                <i
+                  className="pi pi-th-large text-primary"
+                  style={{ fontSize: '3rem', marginBottom: '0.5rem' }}
+                ></i>
+                <span>Outros</span>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <button
+              type="button"
+              className="btn-back mb-2"
+              onClick={() => setShowOutros(false)}
+            >
+              <i className="pi pi-arrow-left"></i>
+              <span>Voltar</span>
+            </button>
+            <div className="cart-grid">
+              {renderCard('estruturaCabeceira', 'Estrutura/Cabeceira')}
+              {renderCard('cortinados', 'Cortinados')}
+              {renderCard('cadeiras', 'Cadeiras')}
+              {renderCard('pousaPes', 'Pousa-pés')}
+              {renderCard('puff', 'Puff')}
+            </div>
+          </div>
+        )}
       </Section>
 
       {hasItems && (
