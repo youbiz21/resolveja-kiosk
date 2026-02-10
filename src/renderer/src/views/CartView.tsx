@@ -49,7 +49,7 @@ export default function CartView(): React.JSX.Element {
       <div className="relative" key={key}>
         {count > 0 && <span className="cart-card-badge">{count}</span>}
         <IconCard
-          className={`shadow-3 w-12rem ${count > 0 ? 'cart-card-active' : 'cart-card-inactive'}`}
+          className={`shadow-3 ${count > 0 ? 'cart-card-active' : 'cart-card-inactive'}`}
           label={label}
           icon={icon || Icones[key]}
         >
@@ -79,7 +79,7 @@ export default function CartView(): React.JSX.Element {
         tagIcon="pi-check-circle"
         badgeClass="checkout-badge-domicilio"
       >
-        <div className="flex flex-wrap gap-2 justify-content-around">
+        <div className="cart-grid">
           {renderCard('sofa', 'Sofá')}
           {renderCard('colchao', 'Colchão')}
           {renderCard('estruturaCabeceira', 'Estrutura/Cabeceira')}
@@ -89,16 +89,6 @@ export default function CartView(): React.JSX.Element {
           {renderCard('puff', 'Puff')}
           {renderCard('carpete', 'Tapete / Carpete')}
         </div>
-      </Section>
-
-      <Section
-        titulo="Lavandaria"
-        descricao="Recolha e entrega ao domicílio"
-        icon="lavandaria"
-        tagIcon="pi-truck"
-        badgeClass="checkout-badge-lavandaria"
-      >
-        {renderCard('tapete', 'Tapete / Carpete')}
       </Section>
 
       {hasItems && (

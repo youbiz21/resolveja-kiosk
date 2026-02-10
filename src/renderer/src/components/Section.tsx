@@ -37,7 +37,7 @@ export default function Section({
           <span>{descricao}</span>
         </small>
       )}
-      <div className="flex gap-3 justify-content-center py-4">{children}</div>
+      <div className="py-4">{children}</div>
     </div>
   )
 }
