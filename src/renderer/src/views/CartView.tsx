@@ -47,10 +47,10 @@ export default function CartView(): React.JSX.Element {
   const renderCard = (key: SimuladorFormKeys, label: string, icon?: string): React.JSX.Element => {
     const count = cart.countByType(key)
     return (
-      <div className="relative" key={key}>
+      <div className="relative h-full" key={key}>
         {count > 0 && <span className="cart-card-badge">{count}</span>}
         <IconCard
-          className={`shadow-3 ${count > 0 ? 'cart-card-active' : 'cart-card-inactive'}`}
+          className={`shadow-3 h-full ${count > 0 ? 'cart-card-active' : 'cart-card-inactive'}`}
           label={label}
           icon={icon || Icones[key]}
         >
@@ -94,7 +94,7 @@ export default function CartView(): React.JSX.Element {
               <div className="flex flex-column p-3 align-items-center justify-content-center h-full">
                 <i
                   className="pi pi-th-large text-primary"
-                  style={{ fontSize: '3rem', marginBottom: '0.5rem' }}
+                  style={{ fontSize: '5rem', marginBottom: '0.5rem' }}
                 ></i>
                 <span>Outros</span>
               </div>
