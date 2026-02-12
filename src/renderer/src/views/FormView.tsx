@@ -119,12 +119,6 @@ export default function FormView(): React.JSX.Element {
   return (
     <div className="page-fill">
       <Toast ref={toast} position="top-right" />
-      <div>
-        <button type="button" className="btn-back" onClick={() => stepper.prev()}>
-          <i className="pi pi-arrow-left"></i>
-          <span>Voltar</span>
-        </button>
-      </div>
       <TabView
         activeIndex={tabIndex}
         onTabChange={(e) => setTabIndex(e.index)}
@@ -145,14 +139,24 @@ export default function FormView(): React.JSX.Element {
               }
             >
               {renderForm(type, item, (updated) => cart.updateItem(index, updated))}
-              <div className="text-center mt-auto pt-3">
-                <Button
-                  label="Avançar"
-                  icon="pi pi-arrow-right"
-                  iconPos="right"
-                  className={`w-full sm:w-20rem${!isFormValid(cart.items[tabIndex]) ? ' btn-disabled-look' : ''}`}
-                  onClick={avancar}
-                />
+              <div className="mt-auto pt-3">
+                <div className="flex justify-content-center align-items-center gap-3">
+                  <Button
+                    label="Voltar"
+                    icon="pi pi-arrow-left"
+                    severity="secondary"
+                    outlined
+                    className="w-full sm:w-auto"
+                    onClick={() => stepper.prev()}
+                  />
+                  <Button
+                    label="Avançar"
+                    icon="pi pi-arrow-right"
+                    iconPos="right"
+                    className={`w-full sm:w-20rem${!isFormValid(cart.items[tabIndex]) ? ' btn-disabled-look' : ''}`}
+                    onClick={avancar}
+                  />
+                </div>
                 {!isFormValid(cart.items[tabIndex]) && (
                   <div className="btn-requirement-hint">
                     <i className="pi pi-info-circle"></i>

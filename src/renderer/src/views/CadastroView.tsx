@@ -2,7 +2,6 @@ import { useState, useRef, useCallback } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { Button } from 'primereact/button'
 import { InputText } from 'primereact/inputtext'
-import { InputMask } from 'primereact/inputmask'
 import { Calendar } from 'primereact/calendar'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/high-res.css'
@@ -181,12 +180,6 @@ export default function CadastroView(): React.JSX.Element {
 
   return (
     <div className={`page-fill${activeInput ? ' keyboard-open' : ''}`}>
-      <div>
-        <button type="button" className="btn-back" onClick={() => stepper.prev()}>
-          <i className="pi pi-arrow-left"></i>
-          <span>Voltar</span>
-        </button>
-      </div>
       <hr />
 
       <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
@@ -326,13 +319,16 @@ export default function CadastroView(): React.JSX.Element {
               name="codigoPostal"
               control={control}
               render={({ field }) => (
-                <InputMask
+                <InputText
                   id="codigoPostal"
                   className="w-full"
-                  mask="9999-999"
                   placeholder="0000-000"
+                  maxLength={8}
                   value={field.value}
-                  onChange={(e) => field.onChange(e.value)}
+                  onChange={(e) => {
+                    const digits = e.target.value.replace(/\D/g, '').slice(0, 7)
+                    field.onChange(formatPostalCode(digits))
+                  }}
                   onFocus={() => handleInputFocus('codigoPostal')}
                 />
               )}
@@ -414,14 +410,24 @@ export default function CadastroView(): React.JSX.Element {
           )}
         </div>
 
-        <div className="text-center mt-4" style={{ paddingBottom: activeInput ? '450px' : '0' }}>
-          <Button
-            type="submit"
-            className={`w-full sm:w-20rem${isFormIncomplete ? ' btn-disabled-look' : ''}`}
-            label="Confirmar agendamento"
-            icon="pi pi-calendar-plus"
-            iconPos="right"
-          />
+        <div className="mt-4" style={{ paddingBottom: activeInput ? '450px' : '0' }}>
+          <div className="flex justify-content-center align-items-center gap-3">
+            <Button
+              type="button"
+              label="Voltar"
+              icon="pi pi-arrow-left"
+              severity="secondary"
+              outlined
+              onClick={() => stepper.prev()}
+            />
+            <Button
+              type="submit"
+              className={`w-full sm:w-20rem${isFormIncomplete ? ' btn-disabled-look' : ''}`}
+              label="Confirmar agendamento"
+              icon="pi pi-calendar-plus"
+              iconPos="right"
+            />
+          </div>
           {isFormIncomplete && (
             <div className="btn-requirement-hint">
               <i className="pi pi-info-circle"></i>

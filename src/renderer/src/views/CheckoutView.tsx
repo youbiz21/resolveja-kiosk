@@ -134,12 +134,6 @@ export default function CheckoutView(): React.JSX.Element {
 
   return (
     <div className="page-fill">
-      <div>
-        <button type="button" className="btn-back" onClick={() => stepper.prev()}>
-          <i className="pi pi-arrow-left"></i>
-          <span>Voltar</span>
-        </button>
-      </div>
       <hr className="mb-3" />
 
       {simulador.items.length > 0 ? (
@@ -242,7 +236,15 @@ export default function CheckoutView(): React.JSX.Element {
             </div>
           )}
 
-          <div className="flex justify-content-center gap-3 mt-auto pt-3">
+          <div className="flex justify-content-center align-items-center gap-3 mt-auto pt-3">
+            <Button
+              label="Voltar"
+              icon="pi pi-arrow-left"
+              severity="secondary"
+              outlined
+              className="checkout-action-btn"
+              onClick={() => stepper.prev()}
+            />
             <Button
               label="Adicionar Serviço"
               icon="pi pi-plus"

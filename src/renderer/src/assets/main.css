@@ -105,6 +105,26 @@ form small {
   flex-direction: column;
   justify-content: space-evenly;
   min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.page-fill form label {
+  font-size: 1rem;
+}
+
+.page-fill form::-webkit-scrollbar {
+  width: 8px;
+}
+
+.page-fill form::-webkit-scrollbar-thumb {
+  background: var(--surface-400);
+  border-radius: 4px;
+}
+
+.page-fill form::-webkit-scrollbar-track {
+  background: var(--surface-100);
 }
 
 /* Checkout stretches its content */
@@ -717,8 +737,8 @@ label[for] {
 
 /* Cadastro section separator */
 .cadastro-section {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
   border-top: 1px solid var(--surface-200);
 }
 
@@ -727,29 +747,29 @@ label[for] {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--primary-color);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .cadastro-section-header i {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
 }
 
 /* Subtle hint below section headers */
 .cadastro-section-hint {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: var(--text-color-secondary);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Small hint below individual fields */
 .cadastro-field-hint {
   display: block;
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: var(--text-color-secondary);
-  margin-top: 0.3rem;
+  margin-top: 0.25rem;
 }
 
 /* Timeslot sub-label */
@@ -758,10 +778,10 @@ label[for] {
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-color-secondary);
-  margin: 1rem 0 0.75rem;
+  margin: 0.75rem 0 0.5rem;
 }
 
 /* Timeslot options */
@@ -776,16 +796,16 @@ label[for] {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border-radius: 12px;
+  padding: 0.6rem 1.25rem;
+  border-radius: 10px;
   cursor: pointer;
   background: var(--surface-100);
   border: 2px solid transparent;
   transition:
     border-color 0.15s,
     background-color 0.15s;
-  min-width: 100px;
-  font-size: 1.1rem;
+  min-width: 80px;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -800,31 +820,31 @@ label[for] {
 
 /* Touch-friendly inline calendar overrides */
 .p-calendar .p-datepicker {
-  font-size: 1.1rem;
-  padding: 0.75rem;
+  font-size: 0.95rem;
+  padding: 0.5rem;
 }
 
 .p-datepicker td > span {
-  width: 72px;
-  height: 72px;
-  line-height: 72px;
-  border-radius: 10px;
+  width: 52px;
+  height: 52px;
+  line-height: 52px;
+  border-radius: 8px;
 }
 
 .p-datepicker th > span {
-  width: 72px;
-  height: 72px;
-  line-height: 72px;
+  width: 52px;
+  height: 52px;
+  line-height: 52px;
 }
 
 .p-datepicker td {
-  padding: 0.15rem;
+  padding: 0.1rem;
 }
 
 .p-datepicker .p-highlight > span,
 .p-datepicker td > span.p-highlight {
   font-weight: 700 !important;
-  font-size: 1.15rem;
+  font-size: 1rem;
   color: #fff !important;
   background: var(--primary-color) !important;
   border: 3px solid var(--primary-800, #90561e) !important;
