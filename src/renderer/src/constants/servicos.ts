@@ -15,7 +15,8 @@ export const ServicosHelp: Record<ServiceKey, ServiceHelpEntry> = {
   impermeabilizacao: {
     nome: 'Impermeabilização',
     descricao:
-      'Aplicação de uma camada protetora que repele líquidos e dificulta a absorção de manchas. Prolonga a vida útil do tecido e facilita a limpeza no dia a dia. Recomendado após cada limpeza profissional.'
+      'Aplicação de uma camada protetora que repele líquidos e dificulta a absorção de manchas. Prolonga a vida útil do tecido e facilita a limpeza no dia a dia. Recomendado após cada limpeza profissional.',
+    video: 'impermeabilizacao-resolevja.mp4'
   },
   antiAcaro: {
     nome: 'Anti-Ácaro',

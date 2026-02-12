@@ -24,7 +24,7 @@ export default function ServiceHelpModal({
         <h2 style={{ margin: '0 0 1rem', fontSize: '1.4rem' }}>{title}</h2>
         <div className="service-help-video">
           {video ? (
-            <video src={video} controls style={{ width: '100%', borderRadius: '12px' }} />
+            <video src={video} autoPlay loop muted style={{ width: '100%', borderRadius: '12px' }} />
           ) : (
             <div className="service-help-placeholder">
               <i className="pi pi-play" style={{ fontSize: '2.5rem' }}></i>

@@ -129,6 +129,7 @@ export default function SofaForm({ values, onChange }: Props): React.JSX.Element
               checked={field.value}
               onChange={(v) => field.onChange(v)}
               className="w-full sm:w-12rem"
+              video="limpeza-de-sofas-resolveja.mp4"
             />
           )}
         />

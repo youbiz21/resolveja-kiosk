@@ -8,13 +8,15 @@ type Props = {
   checked: boolean
   onChange: (value: boolean) => void
   className?: string
+  video?: string
 }
 
 export default function ServiceToggle({
   serviceKey,
   checked,
   onChange,
-  className
+  className,
+  video
 }: Props): React.JSX.Element {
   const [helpOpen, setHelpOpen] = useState(false)
   const service = ServicosHelp[serviceKey]
@@ -37,7 +39,7 @@ export default function ServiceToggle({
           onClose={() => setHelpOpen(false)}
           title={service.nome}
           description={service.descricao}
-          video={service.video}
+          video={video ?? service.video}
         />
       )}
     </div>

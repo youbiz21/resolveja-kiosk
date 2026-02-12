@@ -184,6 +184,7 @@ export default function TapeteForm({ values, onChange }: Props): React.JSX.Eleme
               checked={field.value}
               onChange={(v) => field.onChange(v)}
               className="w-full sm:w-12rem"
+              video="limpeza-de-tapetes-resolveja.mp4"
             />
           )}
         />

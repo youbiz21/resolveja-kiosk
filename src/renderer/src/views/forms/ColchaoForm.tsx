@@ -140,6 +140,7 @@ export default function ColchaoForm({ values, onChange }: Props): React.JSX.Elem
               checked={field.value}
               onChange={(v) => field.onChange(v)}
               className="w-full sm:w-12rem"
+              video="limpeza-de-colchoes-resolevja.mp4"
             />
           )}
         />
